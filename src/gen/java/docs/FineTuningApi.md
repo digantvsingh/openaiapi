@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**cancelFineTuningJob**](FineTuningApi.md#cancelFineTuningJob) | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job. 
 [**createFineTuningJob**](FineTuningApi.md#createFineTuningJob) | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
 [**listFineTuningEvents**](FineTuningApi.md#listFineTuningEvents) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/events | Get status updates for a fine-tuning job. 
+[**listFineTuningJobCheckpoints**](FineTuningApi.md#listFineTuningJobCheckpoints) | **GET** /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints | List checkpoints for a fine-tuning job. 
 [**listPaginatedFineTuningJobs**](FineTuningApi.md#listPaginatedFineTuningJobs) | **GET** /fine_tuning/jobs | List your organization&#x27;s fine-tuning jobs 
 [**retrieveFineTuningJob**](FineTuningApi.md#retrieveFineTuningJob) | **GET** /fine_tuning/jobs/{fine_tuning_job_id} | Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
 
@@ -148,6 +149,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListFineTuningJobEventsResponse**](ListFineTuningJobEventsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="listFineTuningJobCheckpoints"></a>
+# **listFineTuningJobCheckpoints**
+> ListFineTuningJobCheckpointsResponse listFineTuningJobCheckpoints(fineTuningJobId, after, limit)
+
+List checkpoints for a fine-tuning job. 
+
+### Example
+```java
+// Import classes:
+//import com.openapi.ApiClient;
+//import com.openapi.ApiException;
+//import com.openapi.Configuration;
+//import com.openapi.auth.*;
+//import com.openapi.client.FineTuningApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+FineTuningApi apiInstance = new FineTuningApi();
+String fineTuningJobId = "fineTuningJobId_example"; // String | The ID of the fine-tuning job to get checkpoints for. 
+String after = "after_example"; // String | Identifier for the last checkpoint ID from the previous pagination request.
+Integer limit = 10; // Integer | Number of checkpoints to retrieve.
+try {
+    ListFineTuningJobCheckpointsResponse result = apiInstance.listFineTuningJobCheckpoints(fineTuningJobId, after, limit);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling FineTuningApi#listFineTuningJobCheckpoints");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fineTuningJobId** | **String**| The ID of the fine-tuning job to get checkpoints for.  |
+ **after** | **String**| Identifier for the last checkpoint ID from the previous pagination request. | [optional]
+ **limit** | **Integer**| Number of checkpoints to retrieve. | [optional] [default to 10]
+
+### Return type
+
+[**ListFineTuningJobCheckpointsResponse**](ListFineTuningJobCheckpointsResponse.md)
 
 ### Authorization
 

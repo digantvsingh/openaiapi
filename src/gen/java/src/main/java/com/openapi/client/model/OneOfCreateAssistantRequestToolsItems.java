@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = AssistantToolsCode.class, name = "code_interpreter"),
-  @JsonSubTypes.Type(value = AssistantToolsRetrieval.class, name = "retrieval"),
-  @JsonSubTypes.Type(value = AssistantToolsFunction.class, name = "function")
+  @JsonSubTypes.Type(value = AssistantToolsCode.class, name = "AssistantToolsCode"),
+  @JsonSubTypes.Type(value = AssistantToolsFileSearch.class, name = "AssistantToolsFileSearch"),
+  @JsonSubTypes.Type(value = AssistantToolsFunction.class, name = "AssistantToolsFunction")
 })
 public interface OneOfCreateAssistantRequestToolsItems {
 

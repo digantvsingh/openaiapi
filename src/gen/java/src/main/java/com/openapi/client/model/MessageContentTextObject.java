@@ -57,12 +57,12 @@ public class MessageContentTextObject implements OneOfMessageObjectContentItems 
     }
 
   }  @JsonProperty("type")
-  private String type = "text";
+  private TypeEnum type = null;
 
   @JsonProperty("text")
   private MessageContentTextObjectText text = null;
 
-  public MessageContentTextObject type(String type) {
+  public MessageContentTextObject type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -72,11 +72,11 @@ public class MessageContentTextObject implements OneOfMessageObjectContentItems 
    * @return type
   **/
   @Schema(required = true, description = "Always `text`.")
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

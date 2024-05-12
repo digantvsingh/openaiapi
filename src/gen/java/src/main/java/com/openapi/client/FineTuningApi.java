@@ -4,6 +4,7 @@ import com.openapi.ApiClient;
 
 import com.openapi.client.model.CreateFineTuningJobRequest;
 import com.openapi.client.model.FineTuningJob;
+import com.openapi.client.model.ListFineTuningJobCheckpointsResponse;
 import com.openapi.client.model.ListFineTuningJobEventsResponse;
 import com.openapi.client.model.ListPaginatedFineTuningJobsResponse;
 
@@ -193,6 +194,59 @@ public class FineTuningApi {
         String[] authNames = new String[] { "ApiKeyAuth" };
 
         ParameterizedTypeReference<ListFineTuningJobEventsResponse> returnType = new ParameterizedTypeReference<ListFineTuningJobEventsResponse>() {};
+        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    }
+    /**
+     * List checkpoints for a fine-tuning job. 
+     * 
+     * <p><b>200</b> - OK
+     * @param fineTuningJobId The ID of the fine-tuning job to get checkpoints for.  (required)
+     * @param after Identifier for the last checkpoint ID from the previous pagination request. (optional)
+     * @param limit Number of checkpoints to retrieve. (optional, default to 10)
+     * @return ListFineTuningJobCheckpointsResponse
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ListFineTuningJobCheckpointsResponse listFineTuningJobCheckpoints(String fineTuningJobId, String after, Integer limit) throws RestClientException {
+        return listFineTuningJobCheckpointsWithHttpInfo(fineTuningJobId, after, limit).getBody();
+    }
+
+    /**
+     * List checkpoints for a fine-tuning job. 
+     * 
+     * <p><b>200</b> - OK
+     * @param fineTuningJobId The ID of the fine-tuning job to get checkpoints for.  (required)
+     * @param after Identifier for the last checkpoint ID from the previous pagination request. (optional)
+     * @param limit Number of checkpoints to retrieve. (optional, default to 10)
+     * @return ResponseEntity&lt;ListFineTuningJobCheckpointsResponse&gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity<ListFineTuningJobCheckpointsResponse> listFineTuningJobCheckpointsWithHttpInfo(String fineTuningJobId, String after, Integer limit) throws RestClientException {
+        Object postBody = null;
+        // verify the required parameter 'fineTuningJobId' is set
+        if (fineTuningJobId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fineTuningJobId' when calling listFineTuningJobCheckpoints");
+        }
+        // create path and map variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("fine_tuning_job_id", fineTuningJobId);
+        String path = UriComponentsBuilder.fromPath("/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints").buildAndExpand(uriVariables).toUriString();
+        
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
+        final HttpHeaders headerParams = new HttpHeaders();
+        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "limit", limit));
+
+        final String[] accepts = { 
+            "application/json"
+         };
+        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
+        final String[] contentTypes = {  };
+        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
+
+        String[] authNames = new String[] { "ApiKeyAuth" };
+
+        ParameterizedTypeReference<ListFineTuningJobCheckpointsResponse> returnType = new ParameterizedTypeReference<ListFineTuningJobCheckpointsResponse>() {};
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**

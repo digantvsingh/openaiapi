@@ -17,6 +17,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /**
 * ChatCompletionRequestMessage
 */
+@JsonTypeInfo(
+  use = JsonTypeInfo.Id.NAME,
+  include = JsonTypeInfo.As.PROPERTY,
+  property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ChatCompletionRequestSystemMessage.class, name = "ChatCompletionRequestSystemMessage"),
   @JsonSubTypes.Type(value = ChatCompletionRequestUserMessage.class, name = "ChatCompletionRequestUserMessage"),

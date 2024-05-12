@@ -14,19 +14,27 @@ package com.openapi.client.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+
 import com.openapi.client.model.RunCompletionUsage;
+import com.openapi.client.model.RunObjectIncompleteDetails;
 import com.openapi.client.model.RunObjectLastError;
 import com.openapi.client.model.RunObjectRequiredAction;
+import com.openapi.client.model.TruncationObject;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
 @Schema(description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 
 public class RunObject {
@@ -136,6 +144,9 @@ public class RunObject {
   @JsonProperty("completed_at")
   private Integer completedAt = null;
 
+  @JsonProperty("incomplete_details")
+  private RunObjectIncompleteDetails incompleteDetails = null;
+
   @JsonProperty("model")
   private String model = null;
 
@@ -145,14 +156,32 @@ public class RunObject {
   @JsonProperty("tools")
   private List<OneOfRunObjectToolsItems> tools = new ArrayList<OneOfRunObjectToolsItems>();
 
-  @JsonProperty("file_ids")
-  private List<String> fileIds = new ArrayList<String>();
-
   @JsonProperty("metadata")
   private Object metadata = null;
 
   @JsonProperty("usage")
   private RunCompletionUsage usage = null;
+
+  @JsonProperty("temperature")
+  private BigDecimal temperature = null;
+
+  @JsonProperty("top_p")
+  private BigDecimal topP = null;
+
+  @JsonProperty("max_prompt_tokens")
+  private Integer maxPromptTokens = null;
+
+  @JsonProperty("max_completion_tokens")
+  private Integer maxCompletionTokens = null;
+
+  @JsonProperty("truncation_strategy")
+  private TruncationObject truncationStrategy = null;
+
+  @JsonProperty("tool_choice")
+  private String toolChoice = null;
+
+  @JsonProperty("response_format")
+  private String responseFormat = null;
 
   public RunObject id(String id) {
     this.id = id;
@@ -388,6 +417,24 @@ public class RunObject {
     this.completedAt = completedAt;
   }
 
+  public RunObject incompleteDetails(RunObjectIncompleteDetails incompleteDetails) {
+    this.incompleteDetails = incompleteDetails;
+    return this;
+  }
+
+   /**
+   * Get incompleteDetails
+   * @return incompleteDetails
+  **/
+  @Schema(required = true, description = "")
+  public RunObjectIncompleteDetails getIncompleteDetails() {
+    return incompleteDetails;
+  }
+
+  public void setIncompleteDetails(RunObjectIncompleteDetails incompleteDetails) {
+    this.incompleteDetails = incompleteDetails;
+  }
+
   public RunObject model(String model) {
     this.model = model;
     return this;
@@ -447,29 +494,6 @@ public class RunObject {
     this.tools = tools;
   }
 
-  public RunObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public RunObject addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-   /**
-   * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-   * @return fileIds
-  **/
-  @Schema(required = true, description = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
   public RunObject metadata(Object metadata) {
     this.metadata = metadata;
     return this;
@@ -506,6 +530,134 @@ public class RunObject {
     this.usage = usage;
   }
 
+  public RunObject temperature(BigDecimal temperature) {
+    this.temperature = temperature;
+    return this;
+  }
+
+   /**
+   * The sampling temperature used for this run. If not set, defaults to 1.
+   * @return temperature
+  **/
+  @Schema(description = "The sampling temperature used for this run. If not set, defaults to 1.")
+  public BigDecimal getTemperature() {
+    return temperature;
+  }
+
+  public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+  public RunObject topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+   /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   * @return topP
+  **/
+  @Schema(description = "The nucleus sampling value used for this run. If not set, defaults to 1.")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  public RunObject maxPromptTokens(Integer maxPromptTokens) {
+    this.maxPromptTokens = maxPromptTokens;
+    return this;
+  }
+
+   /**
+   * The maximum number of prompt tokens specified to have been used over the course of the run. 
+   * minimum: 256
+   * @return maxPromptTokens
+  **/
+  @Schema(required = true, description = "The maximum number of prompt tokens specified to have been used over the course of the run. ")
+  public Integer getMaxPromptTokens() {
+    return maxPromptTokens;
+  }
+
+  public void setMaxPromptTokens(Integer maxPromptTokens) {
+    this.maxPromptTokens = maxPromptTokens;
+  }
+
+  public RunObject maxCompletionTokens(Integer maxCompletionTokens) {
+    this.maxCompletionTokens = maxCompletionTokens;
+    return this;
+  }
+
+   /**
+   * The maximum number of completion tokens specified to have been used over the course of the run. 
+   * minimum: 256
+   * @return maxCompletionTokens
+  **/
+  @Schema(required = true, description = "The maximum number of completion tokens specified to have been used over the course of the run. ")
+  public Integer getMaxCompletionTokens() {
+    return maxCompletionTokens;
+  }
+
+  public void setMaxCompletionTokens(Integer maxCompletionTokens) {
+    this.maxCompletionTokens = maxCompletionTokens;
+  }
+
+  public RunObject truncationStrategy(TruncationObject truncationStrategy) {
+    this.truncationStrategy = truncationStrategy;
+    return this;
+  }
+
+   /**
+   * Get truncationStrategy
+   * @return truncationStrategy
+  **/
+  @Schema(required = true, description = "")
+  public TruncationObject getTruncationStrategy() {
+    return truncationStrategy;
+  }
+
+  public void setTruncationStrategy(TruncationObject truncationStrategy) {
+    this.truncationStrategy = truncationStrategy;
+  }
+
+  public RunObject toolChoice(String toolChoice) {
+    this.toolChoice = toolChoice;
+    return this;
+  }
+
+   /**
+   * Get toolChoice
+   * @return toolChoice
+  **/
+  @Schema(required = true, description = "")
+  public String getToolChoice() {
+    return toolChoice;
+  }
+
+  public void setToolChoice(String toolChoice) {
+    this.toolChoice = toolChoice;
+  }
+
+  public RunObject responseFormat(String responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
+   /**
+   * Get responseFormat
+   * @return responseFormat
+  **/
+  @Schema(required = true, description = "")
+  public String getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(String responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -529,17 +681,24 @@ public class RunObject {
         Objects.equals(this.cancelledAt, runObject.cancelledAt) &&
         Objects.equals(this.failedAt, runObject.failedAt) &&
         Objects.equals(this.completedAt, runObject.completedAt) &&
+        Objects.equals(this.incompleteDetails, runObject.incompleteDetails) &&
         Objects.equals(this.model, runObject.model) &&
         Objects.equals(this.instructions, runObject.instructions) &&
         Objects.equals(this.tools, runObject.tools) &&
-        Objects.equals(this.fileIds, runObject.fileIds) &&
         Objects.equals(this.metadata, runObject.metadata) &&
-        Objects.equals(this.usage, runObject.usage);
+        Objects.equals(this.usage, runObject.usage) &&
+        Objects.equals(this.temperature, runObject.temperature) &&
+        Objects.equals(this.topP, runObject.topP) &&
+        Objects.equals(this.maxPromptTokens, runObject.maxPromptTokens) &&
+        Objects.equals(this.maxCompletionTokens, runObject.maxCompletionTokens) &&
+        Objects.equals(this.truncationStrategy, runObject.truncationStrategy) &&
+        Objects.equals(this.toolChoice, runObject.toolChoice) &&
+        Objects.equals(this.responseFormat, runObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, model, instructions, tools, fileIds, metadata, usage);
+    return Objects.hash(id, object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, temperature, topP, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
   }
 
 
@@ -561,12 +720,19 @@ public class RunObject {
     sb.append("    cancelledAt: ").append(toIndentedString(cancelledAt)).append("\n");
     sb.append("    failedAt: ").append(toIndentedString(failedAt)).append("\n");
     sb.append("    completedAt: ").append(toIndentedString(completedAt)).append("\n");
+    sb.append("    incompleteDetails: ").append(toIndentedString(incompleteDetails)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
+    sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
+    sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
+    sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -6,24 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelRun**](AssistantsApi.md#cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**createAssistant**](AssistantsApi.md#createAssistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**createAssistantFile**](AssistantsApi.md#createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**createMessage**](AssistantsApi.md#createMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**createRun**](AssistantsApi.md#createRun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**createThread**](AssistantsApi.md#createThread) | **POST** /threads | Create a thread.
 [**createThreadAndRun**](AssistantsApi.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**deleteAssistant**](AssistantsApi.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**deleteAssistantFile**](AssistantsApi.md#deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
 [**deleteThread**](AssistantsApi.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**getAssistant**](AssistantsApi.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**getAssistantFile**](AssistantsApi.md#getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**getMessage**](AssistantsApi.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**getMessageFile**](AssistantsApi.md#getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**getRun**](AssistantsApi.md#getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**getRunStep**](AssistantsApi.md#getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**getThread**](AssistantsApi.md#getThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**listAssistantFiles**](AssistantsApi.md#listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**listAssistants**](AssistantsApi.md#listAssistants) | **GET** /assistants | Returns a list of assistants.
-[**listMessageFiles**](AssistantsApi.md#listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**listMessages**](AssistantsApi.md#listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**listRunSteps**](AssistantsApi.md#listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**listRuns**](AssistantsApi.md#listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -121,56 +115,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AssistantObject**](AssistantObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="createAssistantFile"></a>
-# **createAssistantFile**
-> AssistantFileObject createAssistantFile(body, assistantId)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-CreateAssistantFileRequest body = new CreateAssistantFileRequest(); // CreateAssistantFileRequest | 
-String assistantId = "assistantId_example"; // String | The ID of the assistant for which to create a File. 
-try {
-    AssistantFileObject result = apiInstance.createAssistantFile(body, assistantId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#createAssistantFile");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  |
- **assistantId** | **String**| The ID of the assistant for which to create a File.  |
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
 
 ### Authorization
 
@@ -425,56 +369,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="deleteAssistantFile"></a>
-# **deleteAssistantFile**
-> DeleteAssistantFileResponse deleteAssistantFile(assistantId, fileId)
-
-Delete an assistant file.
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-String assistantId = "assistantId_example"; // String | The ID of the assistant that the file belongs to.
-String fileId = "fileId_example"; // String | The ID of the file to delete.
-try {
-    DeleteAssistantFileResponse result = apiInstance.deleteAssistantFile(assistantId, fileId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#deleteAssistantFile");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **String**| The ID of the assistant that the file belongs to. |
- **fileId** | **String**| The ID of the file to delete. |
-
-### Return type
-
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="deleteThread"></a>
 # **deleteThread**
 > DeleteThreadResponse deleteThread(threadId)
@@ -571,56 +465,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getAssistantFile"></a>
-# **getAssistantFile**
-> AssistantFileObject getAssistantFile(assistantId, fileId)
-
-Retrieves an AssistantFile.
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-String assistantId = "assistantId_example"; // String | The ID of the assistant who the file belongs to.
-String fileId = "fileId_example"; // String | The ID of the file we're getting.
-try {
-    AssistantFileObject result = apiInstance.getAssistantFile(assistantId, fileId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#getAssistantFile");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **String**| The ID of the assistant who the file belongs to. |
- **fileId** | **String**| The ID of the file we&#x27;re getting. |
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getMessage"></a>
 # **getMessage**
 > MessageObject getMessage(threadId, messageId)
@@ -661,58 +505,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getMessageFile"></a>
-# **getMessageFile**
-> MessageFileObject getMessageFile(threadId, messageId, fileId)
-
-Retrieves a message file.
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-String threadId = "threadId_example"; // String | The ID of the thread to which the message and File belong.
-String messageId = "messageId_example"; // String | The ID of the message the file belongs to.
-String fileId = "fileId_example"; // String | The ID of the file being retrieved.
-try {
-    MessageFileObject result = apiInstance.getMessageFile(threadId, messageId, fileId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#getMessageFile");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **String**| The ID of the thread to which the message and File belong. |
- **messageId** | **String**| The ID of the message the file belongs to. |
- **fileId** | **String**| The ID of the file being retrieved. |
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -873,62 +665,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="listAssistantFiles"></a>
-# **listAssistantFiles**
-> ListAssistantFilesResponse listAssistantFiles(assistantId, limit, order, after, before)
-
-Returns a list of assistant files.
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-String assistantId = "assistantId_example"; // String | The ID of the assistant the file belongs to.
-Integer limit = 20; // Integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-String order = "desc"; // String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-String after = "after_example"; // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-String before = "before_example"; // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-try {
-    ListAssistantFilesResponse result = apiInstance.listAssistantFiles(assistantId, limit, order, after, before);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#listAssistantFiles");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **String**| The ID of the assistant the file belongs to. |
- **limit** | **Integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc] [enum: asc, desc]
- **after** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional]
- **before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional]
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="listAssistants"></a>
 # **listAssistants**
 > ListAssistantsResponse listAssistants(limit, order, after, before)
@@ -983,67 +719,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="listMessageFiles"></a>
-# **listMessageFiles**
-> ListMessageFilesResponse listMessageFiles(threadId, messageId, limit, order, after, before)
-
-Returns a list of message files.
-
-### Example
-```java
-// Import classes:
-//import com.openapi.ApiClient;
-//import com.openapi.ApiException;
-//import com.openapi.Configuration;
-//import com.openapi.auth.*;
-//import com.openapi.client.AssistantsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-AssistantsApi apiInstance = new AssistantsApi();
-String threadId = "threadId_example"; // String | The ID of the thread that the message and files belong to.
-String messageId = "messageId_example"; // String | The ID of the message that the files belongs to.
-Integer limit = 20; // Integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-String order = "desc"; // String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-String after = "after_example"; // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-String before = "before_example"; // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-try {
-    ListMessageFilesResponse result = apiInstance.listMessageFiles(threadId, messageId, limit, order, after, before);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling AssistantsApi#listMessageFiles");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **String**| The ID of the thread that the message and files belong to. |
- **messageId** | **String**| The ID of the message that the files belongs to. |
- **limit** | **Integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc] [enum: asc, desc]
- **after** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional]
- **before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional]
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="listMessages"></a>
 # **listMessages**
-> ListMessagesResponse listMessages(threadId, limit, order, after, before)
+> ListMessagesResponse listMessages(threadId, limit, order, after, before, runId)
 
 Returns a list of messages for a given thread.
 
@@ -1065,8 +743,9 @@ Integer limit = 20; // Integer | A limit on the number of objects to be returned
 String order = "desc"; // String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
 String after = "after_example"; // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
 String before = "before_example"; // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+String runId = "runId_example"; // String | Filter messages by the run ID that generated them. 
 try {
-    ListMessagesResponse result = apiInstance.listMessages(threadId, limit, order, after, before);
+    ListMessagesResponse result = apiInstance.listMessages(threadId, limit, order, after, before, runId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AssistantsApi#listMessages");
@@ -1083,6 +762,7 @@ Name | Type | Description  | Notes
  **order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc] [enum: asc, desc]
  **after** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional]
  **before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional]
+ **runId** | **String**| Filter messages by the run ID that generated them.  | [optional]
 
 ### Return type
 

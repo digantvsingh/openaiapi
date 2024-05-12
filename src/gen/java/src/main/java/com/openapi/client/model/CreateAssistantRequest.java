@@ -17,7 +17,10 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.AssistantsApiResponseFormatOption;
+import com.openapi.client.model.CreateAssistantRequestToolResources;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -42,11 +45,20 @@ public class CreateAssistantRequest {
   @JsonProperty("tools")
   private List<OneOfCreateAssistantRequestToolsItems> tools = null;
 
-  @JsonProperty("file_ids")
-  private List<String> fileIds = null;
+  @JsonProperty("tool_resources")
+  private CreateAssistantRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
   private Object metadata = null;
+
+  @JsonProperty("temperature")
+  private BigDecimal temperature = new BigDecimal(1);
+
+  @JsonProperty("top_p")
+  private BigDecimal topP = new BigDecimal(1);
+
+  @JsonProperty("response_format")
+  private AssistantsApiResponseFormatOption responseFormat = null;
 
   public CreateAssistantRequest model(AnyOfCreateAssistantRequestModel model) {
     this.model = model;
@@ -57,7 +69,7 @@ public class CreateAssistantRequest {
    * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
    * @return model
   **/
-  @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @Schema(example = "gpt-4-turbo", required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
   public AnyOfCreateAssistantRequestModel getModel() {
     return model;
   }
@@ -108,10 +120,10 @@ public class CreateAssistantRequest {
   }
 
    /**
-   * The system instructions that the assistant uses. The maximum length is 32768 characters. 
+   * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
    * @return instructions
   **/
-  @Schema(description = "The system instructions that the assistant uses. The maximum length is 32768 characters. ")
+  @Schema(description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ")
   public String getInstructions() {
     return instructions;
   }
@@ -134,10 +146,10 @@ public class CreateAssistantRequest {
   }
 
    /**
-   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    * @return tools
   **/
-  @Schema(description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ")
+  @Schema(description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   public List<OneOfCreateAssistantRequestToolsItems> getTools() {
     return tools;
   }
@@ -146,30 +158,22 @@ public class CreateAssistantRequest {
     this.tools = tools;
   }
 
-  public CreateAssistantRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public CreateAssistantRequest addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<String>();
-    }
-    this.fileIds.add(fileIdsItem);
+  public CreateAssistantRequest toolResources(CreateAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
     return this;
   }
 
    /**
-   * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-   * @return fileIds
+   * Get toolResources
+   * @return toolResources
   **/
-  @Schema(description = "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. ")
-  public List<String> getFileIds() {
-    return fileIds;
+  @Schema(description = "")
+  public CreateAssistantRequestToolResources getToolResources() {
+    return toolResources;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(CreateAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
   public CreateAssistantRequest metadata(Object metadata) {
@@ -190,6 +194,64 @@ public class CreateAssistantRequest {
     this.metadata = metadata;
   }
 
+  public CreateAssistantRequest temperature(BigDecimal temperature) {
+    this.temperature = temperature;
+    return this;
+  }
+
+   /**
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+   * minimum: 0
+   * maximum: 2
+   * @return temperature
+  **/
+  @Schema(example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
+  public BigDecimal getTemperature() {
+    return temperature;
+  }
+
+  public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+  public CreateAssistantRequest topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+   /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+  **/
+  @Schema(example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  public CreateAssistantRequest responseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
+   /**
+   * Get responseFormat
+   * @return responseFormat
+  **/
+  @Schema(description = "")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -205,13 +267,16 @@ public class CreateAssistantRequest {
         Objects.equals(this.description, createAssistantRequest.description) &&
         Objects.equals(this.instructions, createAssistantRequest.instructions) &&
         Objects.equals(this.tools, createAssistantRequest.tools) &&
-        Objects.equals(this.fileIds, createAssistantRequest.fileIds) &&
-        Objects.equals(this.metadata, createAssistantRequest.metadata);
+        Objects.equals(this.toolResources, createAssistantRequest.toolResources) &&
+        Objects.equals(this.metadata, createAssistantRequest.metadata) &&
+        Objects.equals(this.temperature, createAssistantRequest.temperature) &&
+        Objects.equals(this.topP, createAssistantRequest.topP) &&
+        Objects.equals(this.responseFormat, createAssistantRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, fileIds, metadata);
+    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
 
@@ -225,8 +290,11 @@ public class CreateAssistantRequest {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

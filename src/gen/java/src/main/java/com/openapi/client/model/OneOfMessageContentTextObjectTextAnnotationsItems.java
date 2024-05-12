@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = MessageContentTextAnnotationsFileCitationObject.class, name = "file_citation"),
-  @JsonSubTypes.Type(value = MessageContentTextAnnotationsFilePathObject.class, name = "file_path")
+  @JsonSubTypes.Type(value = MessageContentTextAnnotationsFileCitationObject.class, name = "MessageContentTextAnnotationsFileCitationObject"),
+  @JsonSubTypes.Type(value = MessageContentTextAnnotationsFilePathObject.class, name = "MessageContentTextAnnotationsFilePathObject")
 })
 public interface OneOfMessageContentTextObjectTextAnnotationsItems {
 

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.CreateMessageRequest;
+import com.openapi.client.model.CreateThreadRequestToolResources;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ import java.util.List;
 public class CreateThreadRequest {
   @JsonProperty("messages")
   private List<CreateMessageRequest> messages = null;
+
+  @JsonProperty("tool_resources")
+  private CreateThreadRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
   private Object metadata = null;
@@ -58,6 +62,24 @@ public class CreateThreadRequest {
 
   public void setMessages(List<CreateMessageRequest> messages) {
     this.messages = messages;
+  }
+
+  public CreateThreadRequest toolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+   /**
+   * Get toolResources
+   * @return toolResources
+  **/
+  @Schema(description = "")
+  public CreateThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
   public CreateThreadRequest metadata(Object metadata) {
@@ -89,12 +111,13 @@ public class CreateThreadRequest {
     }
     CreateThreadRequest createThreadRequest = (CreateThreadRequest) o;
     return Objects.equals(this.messages, createThreadRequest.messages) &&
+        Objects.equals(this.toolResources, createThreadRequest.toolResources) &&
         Objects.equals(this.metadata, createThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, metadata);
+    return Objects.hash(messages, toolResources, metadata);
   }
 
 
@@ -104,6 +127,7 @@ public class CreateThreadRequest {
     sb.append("class CreateThreadRequest {\n");
     
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

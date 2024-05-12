@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 
-public class AssistantToolsCode implements OneOfAssistantObjectToolsItems, OneOfCreateAssistantRequestToolsItems, OneOfCreateRunRequestToolsItems, OneOfCreateThreadAndRunRequestToolsItems, OneOfModifyAssistantRequestToolsItems, OneOfRunObjectToolsItems {
+public class AssistantToolsCode implements OneOfAssistantObjectToolsItems, OneOfCreateAssistantRequestToolsItems, OneOfCreateRunRequestToolsItems, OneOfCreateThreadAndRunRequestToolsItems, OneOfMessageObjectAttachmentsToolsItems, OneOfModifyAssistantRequestToolsItems, OneOfRunObjectToolsItems {
   /**
    * The type of tool being defined: &#x60;code_interpreter&#x60;
    */

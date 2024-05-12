@@ -26,13 +26,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public class CreateFineTuningJobRequestHyperparameters {
   @JsonProperty("batch_size")
-  private int batchSize = 2;
+  private int batchSize = 1;
 
   @JsonProperty("learning_rate_multiplier")
-  private int learningRateMultiplier = 1;
+  private int learningRateMultiplier = 0;
 
   @JsonProperty("n_epochs")
-  private int nEpochs = 2;
+  private int nEpochs = 1;
 
   public CreateFineTuningJobRequestHyperparameters batchSize(int batchSize) {
     this.batchSize = batchSize;

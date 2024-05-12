@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.ThreadObjectToolResources;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * ModifyThreadRequest
@@ -25,8 +26,29 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 public class ModifyThreadRequest {
+  @JsonProperty("tool_resources")
+  private ThreadObjectToolResources toolResources = null;
+
   @JsonProperty("metadata")
   private Object metadata = null;
+
+  public ModifyThreadRequest toolResources(ThreadObjectToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+   /**
+   * Get toolResources
+   * @return toolResources
+  **/
+  @Schema(description = "")
+  public ThreadObjectToolResources getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(ThreadObjectToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
 
   public ModifyThreadRequest metadata(Object metadata) {
     this.metadata = metadata;
@@ -56,12 +78,13 @@ public class ModifyThreadRequest {
       return false;
     }
     ModifyThreadRequest modifyThreadRequest = (ModifyThreadRequest) o;
-    return Objects.equals(this.metadata, modifyThreadRequest.metadata);
+    return Objects.equals(this.toolResources, modifyThreadRequest.toolResources) &&
+        Objects.equals(this.metadata, modifyThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metadata);
+    return Objects.hash(toolResources, metadata);
   }
 
 
@@ -70,6 +93,7 @@ public class ModifyThreadRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModifyThreadRequest {\n");
     
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

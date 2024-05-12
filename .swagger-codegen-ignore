@@ -29,19 +29,13 @@
 **/FineTuningJobHyperparameters.java
 **/CreateImageRequest.java
 **/CreateImageEditRequest.java
-**/APIClient.java
 **/CreateChatCompletionRequest.java
-**/ChatCompletionRequestAssistantMessage.java
 **/ChatCompletionRequestUserMessage.java
-**/*Completion*.java
+**/ApiClient.java
 **/OneOfMessageObjectContentItems.java
-**/MessageObject.java
-**/MessageContentTextObject.java
-**/AssistantToolsRetrieval.java
 **/OneOfRunObjectToolsItems.java
-**/OneOfMessageContentTextObjectTextAnnotationsItems.java
-**/OneOfCreateAssistantRequestToolsItems.java
-**/OneOfCreateRunRequestToolsItems.java
+**/ChatCompletionRequest*Message.java
+**/RunObject.java
 
 
 

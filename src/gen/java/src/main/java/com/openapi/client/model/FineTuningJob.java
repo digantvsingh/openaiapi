@@ -136,6 +136,12 @@ public class FineTuningJob {
   @JsonProperty("validation_file")
   private String validationFile = null;
 
+  @JsonProperty("integrations")
+  private List<OneOfFineTuningJobIntegrationsItems> integrations = null;
+
+  @JsonProperty("seed")
+  private Integer seed = null;
+
   public FineTuningJob id(String id) {
     this.id = id;
     return this;
@@ -393,6 +399,50 @@ public class FineTuningJob {
     this.validationFile = validationFile;
   }
 
+  public FineTuningJob integrations(List<OneOfFineTuningJobIntegrationsItems> integrations) {
+    this.integrations = integrations;
+    return this;
+  }
+
+  public FineTuningJob addIntegrationsItem(OneOfFineTuningJobIntegrationsItems integrationsItem) {
+    if (this.integrations == null) {
+      this.integrations = new ArrayList<OneOfFineTuningJobIntegrationsItems>();
+    }
+    this.integrations.add(integrationsItem);
+    return this;
+  }
+
+   /**
+   * A list of integrations to enable for this fine-tuning job.
+   * @return integrations
+  **/
+  @Schema(description = "A list of integrations to enable for this fine-tuning job.")
+  public List<OneOfFineTuningJobIntegrationsItems> getIntegrations() {
+    return integrations;
+  }
+
+  public void setIntegrations(List<OneOfFineTuningJobIntegrationsItems> integrations) {
+    this.integrations = integrations;
+  }
+
+  public FineTuningJob seed(Integer seed) {
+    this.seed = seed;
+    return this;
+  }
+
+   /**
+   * The seed used for the fine-tuning job.
+   * @return seed
+  **/
+  @Schema(required = true, description = "The seed used for the fine-tuning job.")
+  public Integer getSeed() {
+    return seed;
+  }
+
+  public void setSeed(Integer seed) {
+    this.seed = seed;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -416,12 +466,14 @@ public class FineTuningJob {
         Objects.equals(this.status, fineTuningJob.status) &&
         Objects.equals(this.trainedTokens, fineTuningJob.trainedTokens) &&
         Objects.equals(this.trainingFile, fineTuningJob.trainingFile) &&
-        Objects.equals(this.validationFile, fineTuningJob.validationFile);
+        Objects.equals(this.validationFile, fineTuningJob.validationFile) &&
+        Objects.equals(this.integrations, fineTuningJob.integrations) &&
+        Objects.equals(this.seed, fineTuningJob.seed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed);
   }
 
 
@@ -444,6 +496,8 @@ public class FineTuningJob {
     sb.append("    trainedTokens: ").append(toIndentedString(trainedTokens)).append("\n");
     sb.append("    trainingFile: ").append(toIndentedString(trainingFile)).append("\n");
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
+    sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
+    sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("}");
     return sb.toString();
   }

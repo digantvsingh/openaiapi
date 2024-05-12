@@ -18,7 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.CreateFineTuningJobRequestHyperparameters;
+import com.openapi.client.model.CreateFineTuningJobRequestIntegrations;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * CreateFineTuningJobRequest
  */
@@ -40,6 +43,12 @@ public class CreateFineTuningJobRequest {
 
   @JsonProperty("validation_file")
   private String validationFile = null;
+
+  @JsonProperty("integrations")
+  private List<CreateFineTuningJobRequestIntegrations> integrations = null;
+
+  @JsonProperty("seed")
+  private Integer seed = null;
 
   public CreateFineTuningJobRequest model(AnyOfCreateFineTuningJobRequestModel model) {
     this.model = model;
@@ -65,10 +74,10 @@ public class CreateFineTuningJobRequest {
   }
 
    /**
-   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
    * @return trainingFile
   **/
-  @Schema(example = "file-abc123", required = true, description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
+  @Schema(example = "file-abc123", required = true, description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
   public String getTrainingFile() {
     return trainingFile;
   }
@@ -131,6 +140,52 @@ public class CreateFineTuningJobRequest {
     this.validationFile = validationFile;
   }
 
+  public CreateFineTuningJobRequest integrations(List<CreateFineTuningJobRequestIntegrations> integrations) {
+    this.integrations = integrations;
+    return this;
+  }
+
+  public CreateFineTuningJobRequest addIntegrationsItem(CreateFineTuningJobRequestIntegrations integrationsItem) {
+    if (this.integrations == null) {
+      this.integrations = new ArrayList<CreateFineTuningJobRequestIntegrations>();
+    }
+    this.integrations.add(integrationsItem);
+    return this;
+  }
+
+   /**
+   * A list of integrations to enable for your fine-tuning job.
+   * @return integrations
+  **/
+  @Schema(description = "A list of integrations to enable for your fine-tuning job.")
+  public List<CreateFineTuningJobRequestIntegrations> getIntegrations() {
+    return integrations;
+  }
+
+  public void setIntegrations(List<CreateFineTuningJobRequestIntegrations> integrations) {
+    this.integrations = integrations;
+  }
+
+  public CreateFineTuningJobRequest seed(Integer seed) {
+    this.seed = seed;
+    return this;
+  }
+
+   /**
+   * The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. 
+   * minimum: 0
+   * maximum: 2147483647
+   * @return seed
+  **/
+  @Schema(example = "42", description = "The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. ")
+  public Integer getSeed() {
+    return seed;
+  }
+
+  public void setSeed(Integer seed) {
+    this.seed = seed;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -145,12 +200,14 @@ public class CreateFineTuningJobRequest {
         Objects.equals(this.trainingFile, createFineTuningJobRequest.trainingFile) &&
         Objects.equals(this.hyperparameters, createFineTuningJobRequest.hyperparameters) &&
         Objects.equals(this.suffix, createFineTuningJobRequest.suffix) &&
-        Objects.equals(this.validationFile, createFineTuningJobRequest.validationFile);
+        Objects.equals(this.validationFile, createFineTuningJobRequest.validationFile) &&
+        Objects.equals(this.integrations, createFineTuningJobRequest.integrations) &&
+        Objects.equals(this.seed, createFineTuningJobRequest.seed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile);
+    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed);
   }
 
 
@@ -164,6 +221,8 @@ public class CreateFineTuningJobRequest {
     sb.append("    hyperparameters: ").append(toIndentedString(hyperparameters)).append("\n");
     sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
+    sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
+    sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -16,12 +16,19 @@ Name | Type | Description | Notes
 **cancelledAt** | **Integer** | The Unix timestamp (in seconds) for when the run was cancelled. | 
 **failedAt** | **Integer** | The Unix timestamp (in seconds) for when the run failed. | 
 **completedAt** | **Integer** | The Unix timestamp (in seconds) for when the run was completed. | 
+**incompleteDetails** | [**RunObjectIncompleteDetails**](RunObjectIncompleteDetails.md) |  | 
 **model** | **String** | The model that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **instructions** | **String** | The instructions that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **tools** | **List&lt;OneOfRunObjectToolsItems&gt;** | The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. | 
-**fileIds** | **List&lt;String&gt;** | The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. | 
 **metadata** | **Object** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
 **usage** | [**RunCompletionUsage**](RunCompletionUsage.md) |  | 
+**temperature** | [**BigDecimal**](BigDecimal.md) | The sampling temperature used for this run. If not set, defaults to 1. |  [optional]
+**topP** | [**BigDecimal**](BigDecimal.md) | The nucleus sampling value used for this run. If not set, defaults to 1. |  [optional]
+**maxPromptTokens** | **Integer** | The maximum number of prompt tokens specified to have been used over the course of the run.  | 
+**maxCompletionTokens** | **Integer** | The maximum number of completion tokens specified to have been used over the course of the run.  | 
+**truncationStrategy** | [**TruncationObject**](TruncationObject.md) |  | 
+**toolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | 
+**responseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | 
 
 <a name="ObjectEnum"></a>
 ## Enum: ObjectEnum

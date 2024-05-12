@@ -56,9 +56,7 @@ public class ChatCompletionRequestMessageContentPartImage implements ChatComplet
       return null;
     }
 
-  }
-
-  @JsonProperty("type")
+  }  @JsonProperty("type")
   private TypeEnum type = null;
 
   @JsonProperty("image_url")

@@ -2,24 +2,18 @@ package com.openapi.client;
 
 import com.openapi.ApiClient;
 
-import com.openapi.client.model.AssistantFileObject;
 import com.openapi.client.model.AssistantObject;
-import com.openapi.client.model.CreateAssistantFileRequest;
 import com.openapi.client.model.CreateAssistantRequest;
 import com.openapi.client.model.CreateMessageRequest;
 import com.openapi.client.model.CreateRunRequest;
 import com.openapi.client.model.CreateThreadAndRunRequest;
 import com.openapi.client.model.CreateThreadRequest;
-import com.openapi.client.model.DeleteAssistantFileResponse;
 import com.openapi.client.model.DeleteAssistantResponse;
 import com.openapi.client.model.DeleteThreadResponse;
-import com.openapi.client.model.ListAssistantFilesResponse;
 import com.openapi.client.model.ListAssistantsResponse;
-import com.openapi.client.model.ListMessageFilesResponse;
 import com.openapi.client.model.ListMessagesResponse;
 import com.openapi.client.model.ListRunStepsResponse;
 import com.openapi.client.model.ListRunsResponse;
-import com.openapi.client.model.MessageFileObject;
 import com.openapi.client.model.MessageObject;
 import com.openapi.client.model.ModifyAssistantRequest;
 import com.openapi.client.model.ModifyMessageRequest;
@@ -170,61 +164,6 @@ public class AssistantsApi {
         String[] authNames = new String[] { "ApiKeyAuth" };
 
         ParameterizedTypeReference<AssistantObject> returnType = new ParameterizedTypeReference<AssistantObject>() {};
-        return apiClient.invokeAPI(path, HttpMethod.POST, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * 
-     * <p><b>200</b> - OK
-     * @param body  (required)
-     * @param assistantId The ID of the assistant for which to create a File.  (required)
-     * @return AssistantFileObject
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public AssistantFileObject createAssistantFile(CreateAssistantFileRequest body, String assistantId) throws RestClientException {
-        return createAssistantFileWithHttpInfo(body, assistantId).getBody();
-    }
-
-    /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * 
-     * <p><b>200</b> - OK
-     * @param body  (required)
-     * @param assistantId The ID of the assistant for which to create a File.  (required)
-     * @return ResponseEntity&lt;AssistantFileObject&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<AssistantFileObject> createAssistantFileWithHttpInfo(CreateAssistantFileRequest body, String assistantId) throws RestClientException {
-        Object postBody = body;
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'body' when calling createAssistantFile");
-        }
-        // verify the required parameter 'assistantId' is set
-        if (assistantId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'assistantId' when calling createAssistantFile");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("assistant_id", assistantId);
-        String path = UriComponentsBuilder.fromPath("/assistants/{assistant_id}/files").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = { 
-            "application/json"
-         };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<AssistantFileObject> returnType = new ParameterizedTypeReference<AssistantFileObject>() {};
         return apiClient.invokeAPI(path, HttpMethod.POST, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
@@ -473,60 +412,6 @@ public class AssistantsApi {
         return apiClient.invokeAPI(path, HttpMethod.DELETE, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
-     * Delete an assistant file.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant that the file belongs to. (required)
-     * @param fileId The ID of the file to delete. (required)
-     * @return DeleteAssistantFileResponse
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public DeleteAssistantFileResponse deleteAssistantFile(String assistantId, String fileId) throws RestClientException {
-        return deleteAssistantFileWithHttpInfo(assistantId, fileId).getBody();
-    }
-
-    /**
-     * Delete an assistant file.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant that the file belongs to. (required)
-     * @param fileId The ID of the file to delete. (required)
-     * @return ResponseEntity&lt;DeleteAssistantFileResponse&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<DeleteAssistantFileResponse> deleteAssistantFileWithHttpInfo(String assistantId, String fileId) throws RestClientException {
-        Object postBody = null;
-        // verify the required parameter 'assistantId' is set
-        if (assistantId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'assistantId' when calling deleteAssistantFile");
-        }
-        // verify the required parameter 'fileId' is set
-        if (fileId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fileId' when calling deleteAssistantFile");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("assistant_id", assistantId);
-        uriVariables.put("file_id", fileId);
-        String path = UriComponentsBuilder.fromPath("/assistants/{assistant_id}/files/{file_id}").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = {  };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<DeleteAssistantFileResponse> returnType = new ParameterizedTypeReference<DeleteAssistantFileResponse>() {};
-        return apiClient.invokeAPI(path, HttpMethod.DELETE, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
      * Delete a thread.
      * 
      * <p><b>200</b> - OK
@@ -621,60 +506,6 @@ public class AssistantsApi {
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
-     * Retrieves an AssistantFile.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant who the file belongs to. (required)
-     * @param fileId The ID of the file we&#x27;re getting. (required)
-     * @return AssistantFileObject
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public AssistantFileObject getAssistantFile(String assistantId, String fileId) throws RestClientException {
-        return getAssistantFileWithHttpInfo(assistantId, fileId).getBody();
-    }
-
-    /**
-     * Retrieves an AssistantFile.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant who the file belongs to. (required)
-     * @param fileId The ID of the file we&#x27;re getting. (required)
-     * @return ResponseEntity&lt;AssistantFileObject&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<AssistantFileObject> getAssistantFileWithHttpInfo(String assistantId, String fileId) throws RestClientException {
-        Object postBody = null;
-        // verify the required parameter 'assistantId' is set
-        if (assistantId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'assistantId' when calling getAssistantFile");
-        }
-        // verify the required parameter 'fileId' is set
-        if (fileId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fileId' when calling getAssistantFile");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("assistant_id", assistantId);
-        uriVariables.put("file_id", fileId);
-        String path = UriComponentsBuilder.fromPath("/assistants/{assistant_id}/files/{file_id}").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = {  };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<AssistantFileObject> returnType = new ParameterizedTypeReference<AssistantFileObject>() {};
-        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
      * Retrieve a message.
      * 
      * <p><b>200</b> - OK
@@ -726,67 +557,6 @@ public class AssistantsApi {
         String[] authNames = new String[] { "ApiKeyAuth" };
 
         ParameterizedTypeReference<MessageObject> returnType = new ParameterizedTypeReference<MessageObject>() {};
-        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
-     * Retrieves a message file.
-     * 
-     * <p><b>200</b> - OK
-     * @param threadId The ID of the thread to which the message and File belong. (required)
-     * @param messageId The ID of the message the file belongs to. (required)
-     * @param fileId The ID of the file being retrieved. (required)
-     * @return MessageFileObject
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public MessageFileObject getMessageFile(String threadId, String messageId, String fileId) throws RestClientException {
-        return getMessageFileWithHttpInfo(threadId, messageId, fileId).getBody();
-    }
-
-    /**
-     * Retrieves a message file.
-     * 
-     * <p><b>200</b> - OK
-     * @param threadId The ID of the thread to which the message and File belong. (required)
-     * @param messageId The ID of the message the file belongs to. (required)
-     * @param fileId The ID of the file being retrieved. (required)
-     * @return ResponseEntity&lt;MessageFileObject&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<MessageFileObject> getMessageFileWithHttpInfo(String threadId, String messageId, String fileId) throws RestClientException {
-        Object postBody = null;
-        // verify the required parameter 'threadId' is set
-        if (threadId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'threadId' when calling getMessageFile");
-        }
-        // verify the required parameter 'messageId' is set
-        if (messageId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'messageId' when calling getMessageFile");
-        }
-        // verify the required parameter 'fileId' is set
-        if (fileId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fileId' when calling getMessageFile");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("thread_id", threadId);
-        uriVariables.put("message_id", messageId);
-        uriVariables.put("file_id", fileId);
-        String path = UriComponentsBuilder.fromPath("/threads/{thread_id}/messages/{message_id}/files/{file_id}").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = {  };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<MessageFileObject> returnType = new ParameterizedTypeReference<MessageFileObject>() {};
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
@@ -952,65 +722,6 @@ public class AssistantsApi {
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
-     * Returns a list of assistant files.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant the file belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ListAssistantFilesResponse
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ListAssistantFilesResponse listAssistantFiles(String assistantId, Integer limit, String order, String after, String before) throws RestClientException {
-        return listAssistantFilesWithHttpInfo(assistantId, limit, order, after, before).getBody();
-    }
-
-    /**
-     * Returns a list of assistant files.
-     * 
-     * <p><b>200</b> - OK
-     * @param assistantId The ID of the assistant the file belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ResponseEntity&lt;ListAssistantFilesResponse&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<ListAssistantFilesResponse> listAssistantFilesWithHttpInfo(String assistantId, Integer limit, String order, String after, String before) throws RestClientException {
-        Object postBody = null;
-        // verify the required parameter 'assistantId' is set
-        if (assistantId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'assistantId' when calling listAssistantFiles");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("assistant_id", assistantId);
-        String path = UriComponentsBuilder.fromPath("/assistants/{assistant_id}/files").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "limit", limit));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "order", order));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "before", before));
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = {  };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<ListAssistantFilesResponse> returnType = new ParameterizedTypeReference<ListAssistantFilesResponse>() {};
-        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
      * Returns a list of assistants.
      * 
      * <p><b>200</b> - OK
@@ -1061,72 +772,6 @@ public class AssistantsApi {
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
-     * Returns a list of message files.
-     * 
-     * <p><b>200</b> - OK
-     * @param threadId The ID of the thread that the message and files belong to. (required)
-     * @param messageId The ID of the message that the files belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ListMessageFilesResponse
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ListMessageFilesResponse listMessageFiles(String threadId, String messageId, Integer limit, String order, String after, String before) throws RestClientException {
-        return listMessageFilesWithHttpInfo(threadId, messageId, limit, order, after, before).getBody();
-    }
-
-    /**
-     * Returns a list of message files.
-     * 
-     * <p><b>200</b> - OK
-     * @param threadId The ID of the thread that the message and files belong to. (required)
-     * @param messageId The ID of the message that the files belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ResponseEntity&lt;ListMessageFilesResponse&gt;
-     * @throws RestClientException if an error occurs while attempting to invoke the API
-     */
-    public ResponseEntity<ListMessageFilesResponse> listMessageFilesWithHttpInfo(String threadId, String messageId, Integer limit, String order, String after, String before) throws RestClientException {
-        Object postBody = null;
-        // verify the required parameter 'threadId' is set
-        if (threadId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'threadId' when calling listMessageFiles");
-        }
-        // verify the required parameter 'messageId' is set
-        if (messageId == null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'messageId' when calling listMessageFiles");
-        }
-        // create path and map variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("thread_id", threadId);
-        uriVariables.put("message_id", messageId);
-        String path = UriComponentsBuilder.fromPath("/threads/{thread_id}/messages/{message_id}/files").buildAndExpand(uriVariables).toUriString();
-        
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
-        final HttpHeaders headerParams = new HttpHeaders();
-        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "limit", limit));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "order", order));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
-        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "before", before));
-
-        final String[] accepts = { 
-            "application/json"
-         };
-        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
-        final String[] contentTypes = {  };
-        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
-
-        String[] authNames = new String[] { "ApiKeyAuth" };
-
-        ParameterizedTypeReference<ListMessageFilesResponse> returnType = new ParameterizedTypeReference<ListMessageFilesResponse>() {};
-        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    }
-    /**
      * Returns a list of messages for a given thread.
      * 
      * <p><b>200</b> - OK
@@ -1135,11 +780,12 @@ public class AssistantsApi {
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return ListMessagesResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ListMessagesResponse listMessages(String threadId, Integer limit, String order, String after, String before) throws RestClientException {
-        return listMessagesWithHttpInfo(threadId, limit, order, after, before).getBody();
+    public ListMessagesResponse listMessages(String threadId, Integer limit, String order, String after, String before, String runId) throws RestClientException {
+        return listMessagesWithHttpInfo(threadId, limit, order, after, before, runId).getBody();
     }
 
     /**
@@ -1151,10 +797,11 @@ public class AssistantsApi {
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return ResponseEntity&lt;ListMessagesResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<ListMessagesResponse> listMessagesWithHttpInfo(String threadId, Integer limit, String order, String after, String before) throws RestClientException {
+    public ResponseEntity<ListMessagesResponse> listMessagesWithHttpInfo(String threadId, Integer limit, String order, String after, String before, String runId) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'threadId' is set
         if (threadId == null) {
@@ -1172,6 +819,7 @@ public class AssistantsApi {
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "order", order));
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "before", before));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "run_id", runId));
 
         final String[] accepts = { 
             "application/json"

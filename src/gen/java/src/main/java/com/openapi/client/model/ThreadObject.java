@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.ThreadObjectToolResources;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * Represents a thread that contains [messages](/docs/api-reference/messages).
@@ -63,6 +64,9 @@ public class ThreadObject {
 
   @JsonProperty("created_at")
   private Integer createdAt = null;
+
+  @JsonProperty("tool_resources")
+  private ThreadObjectToolResources toolResources = null;
 
   @JsonProperty("metadata")
   private Object metadata = null;
@@ -121,6 +125,24 @@ public class ThreadObject {
     this.createdAt = createdAt;
   }
 
+  public ThreadObject toolResources(ThreadObjectToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+   /**
+   * Get toolResources
+   * @return toolResources
+  **/
+  @Schema(required = true, description = "")
+  public ThreadObjectToolResources getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(ThreadObjectToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public ThreadObject metadata(Object metadata) {
     this.metadata = metadata;
     return this;
@@ -152,12 +174,13 @@ public class ThreadObject {
     return Objects.equals(this.id, threadObject.id) &&
         Objects.equals(this.object, threadObject.object) &&
         Objects.equals(this.createdAt, threadObject.createdAt) &&
+        Objects.equals(this.toolResources, threadObject.toolResources) &&
         Objects.equals(this.metadata, threadObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, object, createdAt, metadata);
+    return Objects.hash(id, object, createdAt, toolResources, metadata);
   }
 
 
@@ -169,6 +192,7 @@ public class ThreadObject {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    object: ").append(toIndentedString(object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

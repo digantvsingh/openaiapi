@@ -31,6 +31,9 @@ public class SubmitToolOutputsRunRequest {
   @JsonProperty("tool_outputs")
   private List<SubmitToolOutputsRunRequestToolOutputs> toolOutputs = new ArrayList<SubmitToolOutputsRunRequestToolOutputs>();
 
+  @JsonProperty("stream")
+  private Boolean stream = null;
+
   public SubmitToolOutputsRunRequest toolOutputs(List<SubmitToolOutputsRunRequestToolOutputs> toolOutputs) {
     this.toolOutputs = toolOutputs;
     return this;
@@ -54,6 +57,24 @@ public class SubmitToolOutputsRunRequest {
     this.toolOutputs = toolOutputs;
   }
 
+  public SubmitToolOutputsRunRequest stream(Boolean stream) {
+    this.stream = stream;
+    return this;
+  }
+
+   /**
+   * If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. 
+   * @return stream
+  **/
+  @Schema(description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
+  public Boolean isStream() {
+    return stream;
+  }
+
+  public void setStream(Boolean stream) {
+    this.stream = stream;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -64,12 +85,13 @@ public class SubmitToolOutputsRunRequest {
       return false;
     }
     SubmitToolOutputsRunRequest submitToolOutputsRunRequest = (SubmitToolOutputsRunRequest) o;
-    return Objects.equals(this.toolOutputs, submitToolOutputsRunRequest.toolOutputs);
+    return Objects.equals(this.toolOutputs, submitToolOutputsRunRequest.toolOutputs) &&
+        Objects.equals(this.stream, submitToolOutputsRunRequest.stream);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(toolOutputs);
+    return Objects.hash(toolOutputs, stream);
   }
 
 
@@ -79,6 +101,7 @@ public class SubmitToolOutputsRunRequest {
     sb.append("class SubmitToolOutputsRunRequest {\n");
     
     sb.append("    toolOutputs: ").append(toIndentedString(toolOutputs)).append("\n");
+    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("}");
     return sb.toString();
   }

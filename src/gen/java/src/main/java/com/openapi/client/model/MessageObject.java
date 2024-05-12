@@ -17,6 +17,8 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.MessageObjectAttachments;
+import com.openapi.client.model.MessageObjectIncompleteDetails;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,50 @@ public class MessageObject {
   private String threadId = null;
 
   /**
+   * The status of the message, which can be either &#x60;in_progress&#x60;, &#x60;incomplete&#x60;, or &#x60;completed&#x60;.
+   */
+  public enum StatusEnum {
+    IN_PROGRESS("in_progress"),
+    INCOMPLETE("incomplete"),
+    COMPLETED("completed");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    @JsonCreator
+    public static StatusEnum fromValue(String input) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(input)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+  }  @JsonProperty("status")
+  private StatusEnum status = null;
+
+  @JsonProperty("incomplete_details")
+  private MessageObjectIncompleteDetails incompleteDetails = null;
+
+  @JsonProperty("completed_at")
+  private Integer completedAt = null;
+
+  @JsonProperty("incomplete_at")
+  private Integer incompleteAt = null;
+
+  /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
    */
   public enum RoleEnum {
@@ -112,8 +158,8 @@ public class MessageObject {
   @JsonProperty("run_id")
   private String runId = null;
 
-  @JsonProperty("file_ids")
-  private List<String> fileIds = new ArrayList<String>();
+  @JsonProperty("attachments")
+  private List<MessageObjectAttachments> attachments = new ArrayList<MessageObjectAttachments>();
 
   @JsonProperty("metadata")
   private Object metadata = null;
@@ -190,6 +236,78 @@ public class MessageObject {
     this.threadId = threadId;
   }
 
+  public MessageObject status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the message, which can be either &#x60;in_progress&#x60;, &#x60;incomplete&#x60;, or &#x60;completed&#x60;.
+   * @return status
+  **/
+  @Schema(required = true, description = "The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  public MessageObject incompleteDetails(MessageObjectIncompleteDetails incompleteDetails) {
+    this.incompleteDetails = incompleteDetails;
+    return this;
+  }
+
+   /**
+   * Get incompleteDetails
+   * @return incompleteDetails
+  **/
+  @Schema(required = true, description = "")
+  public MessageObjectIncompleteDetails getIncompleteDetails() {
+    return incompleteDetails;
+  }
+
+  public void setIncompleteDetails(MessageObjectIncompleteDetails incompleteDetails) {
+    this.incompleteDetails = incompleteDetails;
+  }
+
+  public MessageObject completedAt(Integer completedAt) {
+    this.completedAt = completedAt;
+    return this;
+  }
+
+   /**
+   * The Unix timestamp (in seconds) for when the message was completed.
+   * @return completedAt
+  **/
+  @Schema(required = true, description = "The Unix timestamp (in seconds) for when the message was completed.")
+  public Integer getCompletedAt() {
+    return completedAt;
+  }
+
+  public void setCompletedAt(Integer completedAt) {
+    this.completedAt = completedAt;
+  }
+
+  public MessageObject incompleteAt(Integer incompleteAt) {
+    this.incompleteAt = incompleteAt;
+    return this;
+  }
+
+   /**
+   * The Unix timestamp (in seconds) for when the message was marked as incomplete.
+   * @return incompleteAt
+  **/
+  @Schema(required = true, description = "The Unix timestamp (in seconds) for when the message was marked as incomplete.")
+  public Integer getIncompleteAt() {
+    return incompleteAt;
+  }
+
+  public void setIncompleteAt(Integer incompleteAt) {
+    this.incompleteAt = incompleteAt;
+  }
+
   public MessageObject role(RoleEnum role) {
     this.role = role;
     return this;
@@ -222,7 +340,7 @@ public class MessageObject {
    * The content of the message in array of text and/or images.
    * @return content
   **/
-//  @Schema(required = true, description = "The content of the message in array of text and/or images.")
+  @Schema(required = true, description = "The content of the message in array of text and/or images.")
   public List<OneOfMessageObjectContentItems> getContent() {
     return content;
   }
@@ -255,10 +373,10 @@ public class MessageObject {
   }
 
    /**
-   * If applicable, the ID of the [run](/docs/api-reference/runs) associated with the authoring of this message.
+   * The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is &#x60;null&#x60; when messages are created manually using the create message or create thread endpoints.
    * @return runId
   **/
-  @Schema(required = true, description = "If applicable, the ID of the [run](/docs/api-reference/runs) associated with the authoring of this message.")
+  @Schema(required = true, description = "The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.")
   public String getRunId() {
     return runId;
   }
@@ -267,27 +385,27 @@ public class MessageObject {
     this.runId = runId;
   }
 
-  public MessageObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public MessageObject attachments(List<MessageObjectAttachments> attachments) {
+    this.attachments = attachments;
     return this;
   }
 
-  public MessageObject addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
+  public MessageObject addAttachmentsItem(MessageObjectAttachments attachmentsItem) {
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
    /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   * @return fileIds
+   * A list of files attached to the message, and the tools they were added to.
+   * @return attachments
   **/
-  @Schema(required = true, description = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  public List<String> getFileIds() {
-    return fileIds;
+  @Schema(required = true, description = "A list of files attached to the message, and the tools they were added to.")
+  public List<MessageObjectAttachments> getAttachments() {
+    return attachments;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<MessageObjectAttachments> attachments) {
+    this.attachments = attachments;
   }
 
   public MessageObject metadata(Object metadata) {
@@ -322,17 +440,21 @@ public class MessageObject {
         Objects.equals(this.object, messageObject.object) &&
         Objects.equals(this.createdAt, messageObject.createdAt) &&
         Objects.equals(this.threadId, messageObject.threadId) &&
+        Objects.equals(this.status, messageObject.status) &&
+        Objects.equals(this.incompleteDetails, messageObject.incompleteDetails) &&
+        Objects.equals(this.completedAt, messageObject.completedAt) &&
+        Objects.equals(this.incompleteAt, messageObject.incompleteAt) &&
         Objects.equals(this.role, messageObject.role) &&
         Objects.equals(this.content, messageObject.content) &&
         Objects.equals(this.assistantId, messageObject.assistantId) &&
         Objects.equals(this.runId, messageObject.runId) &&
-        Objects.equals(this.fileIds, messageObject.fileIds) &&
+        Objects.equals(this.attachments, messageObject.attachments) &&
         Objects.equals(this.metadata, messageObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, object, createdAt, threadId, role, content, assistantId, runId, fileIds, metadata);
+    return Objects.hash(id, object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, attachments, metadata);
   }
 
 
@@ -345,11 +467,15 @@ public class MessageObject {
     sb.append("    object: ").append(toIndentedString(object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    threadId: ").append(toIndentedString(threadId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    incompleteDetails: ").append(toIndentedString(incompleteDetails)).append("\n");
+    sb.append("    completedAt: ").append(toIndentedString(completedAt)).append("\n");
+    sb.append("    incompleteAt: ").append(toIndentedString(incompleteAt)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    assistantId: ").append(toIndentedString(assistantId)).append("\n");
     sb.append("    runId: ").append(toIndentedString(runId)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

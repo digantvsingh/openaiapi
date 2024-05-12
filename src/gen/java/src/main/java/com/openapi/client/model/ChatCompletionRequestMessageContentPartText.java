@@ -56,7 +56,7 @@ public class ChatCompletionRequestMessageContentPartText implements ChatCompleti
     }
 
   }  @JsonProperty("type")
-  private TypeEnum type = TypeEnum.TEXT;
+  private TypeEnum type = null;
 
   @JsonProperty("text")
   private String text = null;

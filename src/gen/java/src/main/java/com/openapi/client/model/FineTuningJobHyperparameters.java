@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public class FineTuningJobHyperparameters {
   @JsonProperty("n_epochs")
-  private int nEpochs = 2;
+  private int nEpochs = 1;
 
   public FineTuningJobHyperparameters nEpochs(int nEpochs) {
     this.nEpochs = nEpochs;

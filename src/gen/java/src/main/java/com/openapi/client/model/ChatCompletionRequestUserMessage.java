@@ -12,7 +12,6 @@
 
 package com.openapi.client.model;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -65,8 +64,8 @@ public class ChatCompletionRequestUserMessage implements ChatCompletionRequestMe
   @JsonProperty("name")
   private String name = null;
 
-  public Object content(ChatCompletionRequestUserMessageContent content) {
-    setContent(content);
+  public ChatCompletionRequestUserMessage content(Object content) {
+    this.content = content;
     return this;
   }
 
@@ -80,22 +79,6 @@ public class ChatCompletionRequestUserMessage implements ChatCompletionRequestMe
   }
 
   public void setContent(Object content) {
-    if(content instanceof String) {
-      this.content = content.toString();
-    } else if(content instanceof List<?>) {
-
-      //check if all the elements of list are of type ChatCompletionRequestMessageContentPart by iterating through the list and checking the type of each element
-        for (Object element : (List<?>) content) {
-            if (!(element instanceof ChatCompletionRequestMessageContentPart)) {
-            throw new IllegalArgumentException("Invalid content type");
-            }
-        }
-
-      this.content = content;
-    } else {
-      throw new IllegalArgumentException("Invalid content type");
-    }
-
     this.content = content;
   }
 

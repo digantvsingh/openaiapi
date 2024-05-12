@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.MessageContentTextAnnotationsFileCitationObjectFileCitation;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
- * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;retrieval\&quot; tool to search files.
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;file_search\&quot; tool to search files.
  */
-@Schema(description = "A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.")
+@Schema(description = "A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"file_search\" tool to search files.")
 
 
 public class MessageContentTextAnnotationsFileCitationObject implements OneOfMessageContentTextObjectTextAnnotationsItems {

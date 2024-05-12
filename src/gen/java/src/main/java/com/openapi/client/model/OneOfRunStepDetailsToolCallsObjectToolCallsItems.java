@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = RunStepDetailsToolCallsCodeObject.class, name = "RunStepDetailsToolCallsCodeObject"),
-  @JsonSubTypes.Type(value = RunStepDetailsToolCallsRetrievalObject.class, name = "RunStepDetailsToolCallsRetrievalObject"),
+  @JsonSubTypes.Type(value = RunStepDetailsToolCallsFileSearchObject.class, name = "RunStepDetailsToolCallsFileSearchObject"),
   @JsonSubTypes.Type(value = RunStepDetailsToolCallsFunctionObject.class, name = "RunStepDetailsToolCallsFunctionObject")
 })
 public interface OneOfRunStepDetailsToolCallsObjectToolCallsItems {
