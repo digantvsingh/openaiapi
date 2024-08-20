@@ -17,4 +17,5 @@ Name | Type | Description | Notes
 **maxCompletionTokens** | **Integer** | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info.  |  [optional]
 **truncationStrategy** | [**TruncationObject**](TruncationObject.md) |  |  [optional]
 **toolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  |  [optional]
+**parallelToolCalls** | **Boolean** |  |  [optional]
 **responseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  |  [optional]

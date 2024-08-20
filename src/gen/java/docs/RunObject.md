@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **createdAt** | **Integer** | The Unix timestamp (in seconds) for when the run was created. | 
 **threadId** | **String** | The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run. | 
 **assistantId** | **String** | The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run. | 
-**status** | [**StatusEnum**](#StatusEnum) | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;. | 
+**status** | [**StatusEnum**](#StatusEnum) | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;. | 
 **requiredAction** | [**RunObjectRequiredAction**](RunObjectRequiredAction.md) |  | 
 **lastError** | [**RunObjectLastError**](RunObjectLastError.md) |  | 
 **expiresAt** | **Integer** | The Unix timestamp (in seconds) for when the run will expire. | 
@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **maxCompletionTokens** | **Integer** | The maximum number of completion tokens specified to have been used over the course of the run.  | 
 **truncationStrategy** | [**TruncationObject**](TruncationObject.md) |  | 
 **toolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | 
+**parallelToolCalls** | **Boolean** |  | 
 **responseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | 
 
 <a name="ObjectEnum"></a>
@@ -47,4 +48,5 @@ CANCELLING | &quot;cancelling&quot;
 CANCELLED | &quot;cancelled&quot;
 FAILED | &quot;failed&quot;
 COMPLETED | &quot;completed&quot;
+INCOMPLETE | &quot;incomplete&quot;
 EXPIRED | &quot;expired&quot;

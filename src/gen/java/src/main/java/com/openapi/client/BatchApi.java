@@ -49,7 +49,7 @@ public class BatchApi {
     }
 
     /**
-     * Cancels an in-progress batch.
+     * Cancels an in-progress batch. The batch will be in status &#x60;cancelling&#x60; for up to 10 minutes, before changing to &#x60;cancelled&#x60;, where it will have partial results (if any) available in the output file.
      * 
      * <p><b>200</b> - Batch is cancelling. Returns the cancelling batch&#x27;s details.
      * @param batchId The ID of the batch to cancel. (required)
@@ -61,7 +61,7 @@ public class BatchApi {
     }
 
     /**
-     * Cancels an in-progress batch.
+     * Cancels an in-progress batch. The batch will be in status &#x60;cancelling&#x60; for up to 10 minutes, before changing to &#x60;cancelled&#x60;, where it will have partial results (if any) available in the output file.
      * 
      * <p><b>200</b> - Batch is cancelling. Returns the cancelling batch&#x27;s details.
      * @param batchId The ID of the batch to cancel. (required)

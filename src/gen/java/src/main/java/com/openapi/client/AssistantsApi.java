@@ -9,6 +9,7 @@ import com.openapi.client.model.CreateRunRequest;
 import com.openapi.client.model.CreateThreadAndRunRequest;
 import com.openapi.client.model.CreateThreadRequest;
 import com.openapi.client.model.DeleteAssistantResponse;
+import com.openapi.client.model.DeleteMessageResponse;
 import com.openapi.client.model.DeleteThreadResponse;
 import com.openapi.client.model.ListAssistantsResponse;
 import com.openapi.client.model.ListMessagesResponse;
@@ -409,6 +410,60 @@ public class AssistantsApi {
         String[] authNames = new String[] { "ApiKeyAuth" };
 
         ParameterizedTypeReference<DeleteAssistantResponse> returnType = new ParameterizedTypeReference<DeleteAssistantResponse>() {};
+        return apiClient.invokeAPI(path, HttpMethod.DELETE, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    }
+    /**
+     * Deletes a message.
+     * 
+     * <p><b>200</b> - OK
+     * @param threadId The ID of the thread to which this message belongs. (required)
+     * @param messageId The ID of the message to delete. (required)
+     * @return DeleteMessageResponse
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public DeleteMessageResponse deleteMessage(String threadId, String messageId) throws RestClientException {
+        return deleteMessageWithHttpInfo(threadId, messageId).getBody();
+    }
+
+    /**
+     * Deletes a message.
+     * 
+     * <p><b>200</b> - OK
+     * @param threadId The ID of the thread to which this message belongs. (required)
+     * @param messageId The ID of the message to delete. (required)
+     * @return ResponseEntity&lt;DeleteMessageResponse&gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity<DeleteMessageResponse> deleteMessageWithHttpInfo(String threadId, String messageId) throws RestClientException {
+        Object postBody = null;
+        // verify the required parameter 'threadId' is set
+        if (threadId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'threadId' when calling deleteMessage");
+        }
+        // verify the required parameter 'messageId' is set
+        if (messageId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'messageId' when calling deleteMessage");
+        }
+        // create path and map variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("thread_id", threadId);
+        uriVariables.put("message_id", messageId);
+        String path = UriComponentsBuilder.fromPath("/threads/{thread_id}/messages/{message_id}").buildAndExpand(uriVariables).toUriString();
+        
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
+        final HttpHeaders headerParams = new HttpHeaders();
+        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+
+        final String[] accepts = { 
+            "application/json"
+         };
+        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
+        final String[] contentTypes = {  };
+        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
+
+        String[] authNames = new String[] { "ApiKeyAuth" };
+
+        ParameterizedTypeReference<DeleteMessageResponse> returnType = new ParameterizedTypeReference<DeleteMessageResponse>() {};
         return apiClient.invokeAPI(path, HttpMethod.DELETE, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**

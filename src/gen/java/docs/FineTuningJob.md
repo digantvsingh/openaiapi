@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **validationFile** | **String** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | 
 **integrations** | **List&lt;OneOfFineTuningJobIntegrationsItems&gt;** | A list of integrations to enable for this fine-tuning job. |  [optional]
 **seed** | **Integer** | The seed used for the fine-tuning job. | 
+**estimatedFinish** | **Integer** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. |  [optional]
 
 <a name="ObjectEnum"></a>
 ## Enum: ObjectEnum

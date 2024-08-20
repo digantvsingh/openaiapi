@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**createThread**](AssistantsApi.md#createThread) | **POST** /threads | Create a thread.
 [**createThreadAndRun**](AssistantsApi.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**deleteAssistant**](AssistantsApi.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
+[**deleteMessage**](AssistantsApi.md#deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**deleteThread**](AssistantsApi.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**getAssistant**](AssistantsApi.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
 [**getMessage**](AssistantsApi.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
@@ -359,6 +360,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeleteAssistantResponse**](DeleteAssistantResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="deleteMessage"></a>
+# **deleteMessage**
+> DeleteMessageResponse deleteMessage(threadId, messageId)
+
+Deletes a message.
+
+### Example
+```java
+// Import classes:
+//import com.openapi.ApiClient;
+//import com.openapi.ApiException;
+//import com.openapi.Configuration;
+//import com.openapi.auth.*;
+//import com.openapi.client.AssistantsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+AssistantsApi apiInstance = new AssistantsApi();
+String threadId = "threadId_example"; // String | The ID of the thread to which this message belongs.
+String messageId = "messageId_example"; // String | The ID of the message to delete.
+try {
+    DeleteMessageResponse result = apiInstance.deleteMessage(threadId, messageId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling AssistantsApi#deleteMessage");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **threadId** | **String**| The ID of the thread to which this message belongs. |
+ **messageId** | **String**| The ID of the message to delete. |
+
+### Return type
+
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
