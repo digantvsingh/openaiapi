@@ -23,6 +23,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   property = "type")
 @JsonSubTypes({
 })
-public interface RunStepStreamEvent {
+public interface RunStepStreamEvent extends AssistantStreamEvent{
 
 }

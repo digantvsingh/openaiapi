@@ -30,7 +30,7 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 
-public class RunObject {
+public class RunObject implements  AssistantStreamEvent{
     @JsonProperty("id")
     private String id = null;
 

@@ -2,6 +2,8 @@ package com.openapi;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openapi.client.model.CreateChatCompletionStreamResponse;
+import com.openapi.client.model.AssistantStreamEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.reactive.function.client.WebClient;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,6 +57,8 @@ import com.openapi.auth.Authentication;
 import com.openapi.auth.HttpBasicAuth;
 import com.openapi.auth.ApiKeyAuth;
 import com.openapi.auth.OAuth;
+import reactor.core.publisher.Flux;
+import com.openapi.client.model.AssistantStreamEvent;
 
 
 @Component("com.openapi.ApiClient")
@@ -64,6 +70,10 @@ public class ApiClient {
     }
 
     private String openAiKey;
+
+    public void setWebClient(WebClient webclient) {
+        this.webClient = webclient;
+    }
 
     public enum CollectionFormat {
         CSV(","), TSV("\t"), SSV(" "), PIPES("|"), MULTI(null);
@@ -89,6 +99,8 @@ public class ApiClient {
     private Map<String, Authentication> authentications;
     
     private DateFormat dateFormat;
+
+    private WebClient webClient;
 
     public ApiClient() {
         this.restTemplate = buildRestTemplate();
@@ -484,6 +496,44 @@ public class ApiClient {
         return isForm ? formParams : obj;
     }
 
+    public Flux<AssistantStreamEvent> invokeAsyncAPI(String path, HttpMethod method, MultiValueMap<String, String> queryParams, Object body, HttpHeaders headerParams, MultiValueMap<String, Object> formParams, List<MediaType> accept, MediaType contentType, String[] authNames,ParameterizedTypeReference<AssistantStreamEvent> returnType) throws RestClientException {
+
+        updateParamsForAuth(authNames, queryParams, headerParams);
+
+        final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(basePath).path(path);
+        if (queryParams != null) {
+            builder.queryParams(queryParams);
+        }
+
+        final BodyBuilder requestBuilder = RequestEntity.method(method, builder.build().toUri());
+        if (accept != null) {
+            requestBuilder.accept(accept.toArray(new MediaType[accept.size()]));
+        }
+        if (contentType != null) {
+            requestBuilder.contentType(contentType);
+        }
+
+        addHeadersToRequest(headerParams, requestBuilder);
+        addHeadersToRequest(defaultHeaders, requestBuilder);
+
+        RequestEntity<Object> requestEntity = requestBuilder.body(selectBody(body, formParams, contentType));
+
+
+        return webClient.post().uri(path).headers(
+                        httpHeaders -> {
+                            httpHeaders.addAll(headerParams);
+                            httpHeaders.addAll(defaultHeaders);
+                        }
+                ).contentType(MediaType.APPLICATION_JSON).accept(MediaType.ALL).bodyValue(body).
+
+
+                retrieve().bodyToFlux(AssistantStreamEvent.class);
+
+    }
+
+
+
+
     /**
      * Invoke API by sending HTTP request with the given options.
      *
@@ -607,7 +657,7 @@ public class ApiClient {
         }
 
         private void logResponse(ClientHttpResponse response) throws IOException {
-            log.info("HTTP Status Code: " + response.getRawStatusCode());
+            log.info("HTTP Status Code: " + response.getStatusCode());
             log.info("Status Text: " + response.getStatusText());
             log.info("HTTP Headers: " + headersToString(response.getHeaders()));
             log.info("Response Body: " + bodyToString(response.getBody()));

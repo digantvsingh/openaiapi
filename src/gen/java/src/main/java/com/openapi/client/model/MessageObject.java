@@ -28,7 +28,7 @@ import java.util.List;
 @Schema(description = "Represents a message within a [thread](/docs/api-reference/threads).")
 
 
-public class MessageObject {
+public class MessageObject implements  AssistantStreamEvent{
   @JsonProperty("id")
   private String id = null;
 

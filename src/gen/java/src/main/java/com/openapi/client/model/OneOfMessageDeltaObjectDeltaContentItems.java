@@ -22,10 +22,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = MessageDeltaContentImageFileObject.class, name = "MessageDeltaContentImageFileObject"),
-  @JsonSubTypes.Type(value = MessageDeltaContentTextObject.class, name = "MessageDeltaContentTextObject"),
-  @JsonSubTypes.Type(value = MessageDeltaContentRefusalObject.class, name = "MessageDeltaContentRefusalObject"),
-  @JsonSubTypes.Type(value = MessageDeltaContentImageUrlObject.class, name = "MessageDeltaContentImageUrlObject")
+  @JsonSubTypes.Type(value = MessageDeltaContentImageFileObject.class, name = "image_file"),
+  @JsonSubTypes.Type(value = MessageDeltaContentTextObject.class, name = "text"),
+  @JsonSubTypes.Type(value = MessageDeltaContentRefusalObject.class, name = "refusal"),
+  @JsonSubTypes.Type(value = MessageDeltaContentImageUrlObject.class, name = "image_url")
 })
 public interface OneOfMessageDeltaObjectDeltaContentItems {
 

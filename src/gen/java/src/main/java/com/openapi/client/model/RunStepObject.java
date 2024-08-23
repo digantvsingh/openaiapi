@@ -26,7 +26,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Represents a step in execution of a run. ")
 
 
-public class RunStepObject {
+public class RunStepObject implements  AssistantStreamEvent
+{
   @JsonProperty("id")
   private String id = null;
 
