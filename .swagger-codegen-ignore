@@ -36,6 +36,13 @@
 **/OneOfRunObjectToolsItems.java
 **/ChatCompletionRequest*Message.java
 **/RunObject.java
+**/RunStepObject.java
+**/OneOfRunStepObjectStepDetails.java
+**/MessageObject.java
+**/MessageDeltaObject.java
+**/OneOfMessageDeltaObjectDeltaContentItems.java
+**/ThreadObject.java
+**/*StreamEvent.java
 
 
 
