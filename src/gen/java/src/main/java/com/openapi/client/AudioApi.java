@@ -2,6 +2,7 @@ package com.openapi.client;
 
 import com.openapi.ApiClient;
 
+import com.openapi.client.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import com.openapi.client.model.CreateSpeechRequest;
 import java.io.File;
@@ -110,7 +111,7 @@ public class AudioApi {
      * @return InlineResponse200
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public InlineResponse200 createTranscription(File file, Object model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws RestClientException {
+    public InlineResponse200 createTranscription(File file, Object model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws RestClientException {
         return createTranscriptionWithHttpInfo(file, model, language, prompt, responseFormat, temperature, timestampGranularities).getBody();
     }
 
@@ -128,7 +129,7 @@ public class AudioApi {
      * @return ResponseEntity&lt;InlineResponse200&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<InlineResponse200> createTranscriptionWithHttpInfo(File file, Object model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws RestClientException {
+    public ResponseEntity<InlineResponse200> createTranscriptionWithHttpInfo(File file, Object model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'file' is set
         if (file == null) {
@@ -204,7 +205,7 @@ public class AudioApi {
      * @return InlineResponse2001
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public InlineResponse2001 createTranslation(File file, Object model, String prompt, String responseFormat, BigDecimal temperature) throws RestClientException {
+    public InlineResponse2001 createTranslation(File file, Object model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) throws RestClientException {
         return createTranslationWithHttpInfo(file, model, prompt, responseFormat, temperature).getBody();
     }
 
@@ -220,7 +221,7 @@ public class AudioApi {
      * @return ResponseEntity&lt;InlineResponse2001&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<InlineResponse2001> createTranslationWithHttpInfo(File file, Object model, String prompt, String responseFormat, BigDecimal temperature) throws RestClientException {
+    public ResponseEntity<InlineResponse2001> createTranslationWithHttpInfo(File file, Object model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'file' is set
         if (file == null) {

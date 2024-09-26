@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ThreadObject.class, name = "thread.created"),
         @JsonSubTypes.Type(value = RunObject.class, name = "thread.run"),
         @JsonSubTypes.Type(value = RunStepObject.class, name = "thread.run.step"),
+        @JsonSubTypes.Type(value = RunStepDeltaObject.class, name = "thread.run.step.delta"),
         @JsonSubTypes.Type(value = MessageObject.class, name = "thread.message"),
         @JsonSubTypes.Type(value = MessageDeltaObject.class, name = "thread.message.delta"),
         @JsonSubTypes.Type(value = ErrorEvent.class, name = "error"),

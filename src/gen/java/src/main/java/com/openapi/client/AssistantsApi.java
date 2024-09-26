@@ -228,11 +228,12 @@ public class AssistantsApi {
      * <p><b>200</b> - OK
      * @param body  (required)
      * @param threadId The ID of the thread to run. (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return RunObject
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public RunObject createRun(CreateRunRequest body, String threadId) throws RestClientException {
-        return createRunWithHttpInfo(body, threadId).getBody();
+    public RunObject createRun(CreateRunRequest body, String threadId, List<String> include) throws RestClientException {
+        return createRunWithHttpInfo(body, threadId, include).getBody();
     }
 
     /**
@@ -241,10 +242,11 @@ public class AssistantsApi {
      * <p><b>200</b> - OK
      * @param body  (required)
      * @param threadId The ID of the thread to run. (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return ResponseEntity&lt;RunObject&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<RunObject> createRunWithHttpInfo(CreateRunRequest body, String threadId) throws RestClientException {
+    public ResponseEntity<RunObject> createRunWithHttpInfo(CreateRunRequest body, String threadId, List<String> include) throws RestClientException {
         Object postBody = body;
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -262,6 +264,7 @@ public class AssistantsApi {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
         final HttpHeaders headerParams = new HttpHeaders();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+        queryParams.putAll(apiClient.parameterToMultiValueMap(ApiClient.CollectionFormat.valueOf("multi".toUpperCase()), "include[]", include));
 
         final String[] accepts = { 
             "application/json"
@@ -675,11 +678,12 @@ public class AssistantsApi {
      * @param threadId The ID of the thread to which the run and run step belongs. (required)
      * @param runId The ID of the run to which the run step belongs. (required)
      * @param stepId The ID of the run step to retrieve. (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return RunStepObject
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public RunStepObject getRunStep(String threadId, String runId, String stepId) throws RestClientException {
-        return getRunStepWithHttpInfo(threadId, runId, stepId).getBody();
+    public RunStepObject getRunStep(String threadId, String runId, String stepId, List<String> include) throws RestClientException {
+        return getRunStepWithHttpInfo(threadId, runId, stepId, include).getBody();
     }
 
     /**
@@ -689,10 +693,11 @@ public class AssistantsApi {
      * @param threadId The ID of the thread to which the run and run step belongs. (required)
      * @param runId The ID of the run to which the run step belongs. (required)
      * @param stepId The ID of the run step to retrieve. (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return ResponseEntity&lt;RunStepObject&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<RunStepObject> getRunStepWithHttpInfo(String threadId, String runId, String stepId) throws RestClientException {
+    public ResponseEntity<RunStepObject> getRunStepWithHttpInfo(String threadId, String runId, String stepId, List<String> include) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'threadId' is set
         if (threadId == null) {
@@ -716,6 +721,7 @@ public class AssistantsApi {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
         final HttpHeaders headerParams = new HttpHeaders();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+        queryParams.putAll(apiClient.parameterToMultiValueMap(ApiClient.CollectionFormat.valueOf("multi".toUpperCase()), "include[]", include));
 
         final String[] accepts = { 
             "application/json"
@@ -898,11 +904,12 @@ public class AssistantsApi {
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return ListRunStepsResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ListRunStepsResponse listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before) throws RestClientException {
-        return listRunStepsWithHttpInfo(threadId, runId, limit, order, after, before).getBody();
+    public ListRunStepsResponse listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) throws RestClientException {
+        return listRunStepsWithHttpInfo(threadId, runId, limit, order, after, before, include).getBody();
     }
 
     /**
@@ -915,10 +922,11 @@ public class AssistantsApi {
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search/customizing-file-search-settings) for more information.  (optional)
      * @return ResponseEntity&lt;ListRunStepsResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<ListRunStepsResponse> listRunStepsWithHttpInfo(String threadId, String runId, Integer limit, String order, String after, String before) throws RestClientException {
+    public ResponseEntity<ListRunStepsResponse> listRunStepsWithHttpInfo(String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) throws RestClientException {
         Object postBody = null;
         // verify the required parameter 'threadId' is set
         if (threadId == null) {
@@ -941,6 +949,7 @@ public class AssistantsApi {
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "order", order));
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "before", before));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(ApiClient.CollectionFormat.valueOf("multi".toUpperCase()), "include[]", include));
 
         final String[] accepts = { 
             "application/json"

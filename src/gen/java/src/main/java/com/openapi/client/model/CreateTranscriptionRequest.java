@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.AudioResponseFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.File;
 import java.math.BigDecimal;
@@ -41,42 +42,8 @@ public class CreateTranscriptionRequest {
   @JsonProperty("prompt")
   private String prompt = null;
 
-  /**
-   * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
-   */
-  public enum ResponseFormatEnum {
-    JSON("json"),
-    TEXT("text"),
-    SRT("srt"),
-    VERBOSE_JSON("verbose_json"),
-    VTT("vtt");
-
-    private String value;
-
-    ResponseFormatEnum(String value) {
-      this.value = value;
-    }
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    @JsonCreator
-    public static ResponseFormatEnum fromValue(String input) {
-      for (ResponseFormatEnum b : ResponseFormatEnum.values()) {
-        if (b.value.equals(input)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-  }  @JsonProperty("response_format")
-  private ResponseFormatEnum responseFormat = ResponseFormatEnum.JSON;
+  @JsonProperty("response_format")
+  private AudioResponseFormat responseFormat = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(0);
@@ -187,21 +154,21 @@ public class CreateTranscriptionRequest {
     this.prompt = prompt;
   }
 
-  public CreateTranscriptionRequest responseFormat(ResponseFormatEnum responseFormat) {
+  public CreateTranscriptionRequest responseFormat(AudioResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
     return this;
   }
 
    /**
-   * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+   * Get responseFormat
    * @return responseFormat
   **/
-  @Schema(description = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ")
-  public ResponseFormatEnum getResponseFormat() {
+  @Schema(description = "")
+  public AudioResponseFormat getResponseFormat() {
     return responseFormat;
   }
 
-  public void setResponseFormat(ResponseFormatEnum responseFormat) {
+  public void setResponseFormat(AudioResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
   }
 

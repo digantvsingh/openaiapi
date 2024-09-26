@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Represents a run step delta i.e. any changed fields on a run step during streaming. ")
 
 
-public class RunStepDeltaObject {
+public class RunStepDeltaObject implements  AssistantStreamEvent {
   @JsonProperty("id")
   private String id = null;
 

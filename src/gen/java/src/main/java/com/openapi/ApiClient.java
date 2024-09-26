@@ -21,6 +21,7 @@ import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
@@ -606,6 +607,9 @@ public class ApiClient {
         // This allows us to read the response more than once - Necessary for debugging.
         restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(restTemplate.getRequestFactory()));
 
+        // Set the custom message converter to the RestTemplate
+        List<HttpMessageConverter<?>> converters = new ArrayList<>();
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -613,8 +617,12 @@ public class ApiClient {
         MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
         messageConverter.setObjectMapper(objectMapper);
 
-        // Set the custom message converter to the RestTemplate
-        List<HttpMessageConverter<?>> converters = new ArrayList<>();
+        // Add a message converter for application/octet-stream
+        ByteArrayHttpMessageConverter byteArrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
+        byteArrayHttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
+        converters.add(byteArrayHttpMessageConverter);
+       
+
         converters.add(messageConverter);
         restTemplate.setMessageConverters(converters);
 

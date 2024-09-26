@@ -43,6 +43,12 @@
 **/OneOfMessageDeltaObjectDeltaContentItems.java
 **/ThreadObject.java
 **/*StreamEvent.java
+**/*CreateRunRequest.java
+**/*RunStepDeltaObject.java
+**/OneOfRunStepDeltaObjectDeltaStepDetails.java
+**/OneOfRunStepDeltaStepDetailsToolCallsObjectToolCallsItems.java
+**/OneOfRunStepDetailsToolCallsObjectToolCallsItems.java
+**/MessageRequestContentTextObject.java
 
 
 

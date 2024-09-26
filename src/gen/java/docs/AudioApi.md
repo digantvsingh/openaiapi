@@ -79,7 +79,7 @@ File file = new File("file_example"); // File |
 Object model = null; // Object | 
 String language = "language_example"; // String | 
 String prompt = "prompt_example"; // String | 
-String responseFormat = "responseFormat_example"; // String | 
+AudioResponseFormat responseFormat = new AudioResponseFormat(); // AudioResponseFormat | 
 BigDecimal temperature = new BigDecimal(); // BigDecimal | 
 List<String> timestampGranularities = Arrays.asList("timestampGranularities_example"); // List<String> | 
 try {
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
  **model** | [**Object**](.md)|  |
  **language** | **String**|  |
  **prompt** | **String**|  |
- **responseFormat** | **String**|  | [enum: json, text, srt, verbose_json, vtt]
+ **responseFormat** | [**AudioResponseFormat**](.md)|  |
  **temperature** | **BigDecimal**|  |
  **timestampGranularities** | [**List&lt;String&gt;**](String.md)|  | [enum: word, segment]
 
@@ -138,7 +138,7 @@ AudioApi apiInstance = new AudioApi();
 File file = new File("file_example"); // File | 
 Object model = null; // Object | 
 String prompt = "prompt_example"; // String | 
-String responseFormat = "responseFormat_example"; // String | 
+AudioResponseFormat responseFormat = new AudioResponseFormat(); // AudioResponseFormat | 
 BigDecimal temperature = new BigDecimal(); // BigDecimal | 
 try {
     InlineResponse2001 result = apiInstance.createTranslation(file, model, prompt, responseFormat, temperature);
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
  **file** | **File**|  |
  **model** | [**Object**](.md)|  |
  **prompt** | **String**|  |
- **responseFormat** | **String**|  |
+ **responseFormat** | [**AudioResponseFormat**](.md)|  |
  **temperature** | **BigDecimal**|  |
 
 ### Return type

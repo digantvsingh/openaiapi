@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * RunStepDetailsToolCallsFileSearchObject
@@ -62,7 +63,7 @@ public class RunStepDetailsToolCallsFileSearchObject implements OneOfRunStepDeta
   private TypeEnum type = null;
 
   @JsonProperty("file_search")
-  private Object fileSearch = null;
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch = null;
 
   public RunStepDetailsToolCallsFileSearchObject id(String id) {
     this.id = id;
@@ -100,21 +101,21 @@ public class RunStepDetailsToolCallsFileSearchObject implements OneOfRunStepDeta
     this.type = type;
   }
 
-  public RunStepDetailsToolCallsFileSearchObject fileSearch(Object fileSearch) {
+  public RunStepDetailsToolCallsFileSearchObject fileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
     this.fileSearch = fileSearch;
     return this;
   }
 
    /**
-   * For now, this is always going to be an empty object.
+   * Get fileSearch
    * @return fileSearch
   **/
-  @Schema(required = true, description = "For now, this is always going to be an empty object.")
-  public Object getFileSearch() {
+  @Schema(required = true, description = "")
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
     return fileSearch;
   }
 
-  public void setFileSearch(Object fileSearch) {
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
     this.fileSearch = fileSearch;
   }
 

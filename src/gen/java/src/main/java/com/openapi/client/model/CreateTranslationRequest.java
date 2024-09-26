@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.AudioResponseFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.File;
 import java.math.BigDecimal;
@@ -37,7 +38,7 @@ public class CreateTranslationRequest {
   private String prompt = null;
 
   @JsonProperty("response_format")
-  private String responseFormat = "json";
+  private AudioResponseFormat responseFormat = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(0);
@@ -96,21 +97,21 @@ public class CreateTranslationRequest {
     this.prompt = prompt;
   }
 
-  public CreateTranslationRequest responseFormat(String responseFormat) {
+  public CreateTranslationRequest responseFormat(AudioResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
     return this;
   }
 
    /**
-   * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+   * Get responseFormat
    * @return responseFormat
   **/
-  @Schema(description = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ")
-  public String getResponseFormat() {
+  @Schema(description = "")
+  public AudioResponseFormat getResponseFormat() {
     return responseFormat;
   }
 
-  public void setResponseFormat(String responseFormat) {
+  public void setResponseFormat(AudioResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
   }
 

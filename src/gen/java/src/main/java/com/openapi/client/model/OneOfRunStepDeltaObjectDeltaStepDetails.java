@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = RunStepDeltaStepDetailsMessageCreationObject.class, name = "RunStepDeltaStepDetailsMessageCreationObject"),
-  @JsonSubTypes.Type(value = RunStepDeltaStepDetailsToolCallsObject.class, name = "RunStepDeltaStepDetailsToolCallsObject")
+  @JsonSubTypes.Type(value = RunStepDeltaStepDetailsMessageCreationObject.class, name = "message_creation"),
+  @JsonSubTypes.Type(value = RunStepDeltaStepDetailsToolCallsObject.class, name = "tool_calls"),
 })
 public interface OneOfRunStepDeltaObjectDeltaStepDetails {
 

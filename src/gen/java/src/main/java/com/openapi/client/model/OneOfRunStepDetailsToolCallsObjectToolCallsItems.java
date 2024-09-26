@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = RunStepDetailsToolCallsCodeObject.class, name = "RunStepDetailsToolCallsCodeObject"),
-  @JsonSubTypes.Type(value = RunStepDetailsToolCallsFileSearchObject.class, name = "RunStepDetailsToolCallsFileSearchObject"),
-  @JsonSubTypes.Type(value = RunStepDetailsToolCallsFunctionObject.class, name = "RunStepDetailsToolCallsFunctionObject")
+  @JsonSubTypes.Type(value = RunStepDetailsToolCallsCodeObject.class, name = "tool_calls"),
+  @JsonSubTypes.Type(value = RunStepDetailsToolCallsFileSearchObject.class, name = "file_search"),
+  @JsonSubTypes.Type(value = RunStepDetailsToolCallsFunctionObject.class, name = "function")
 })
 public interface OneOfRunStepDetailsToolCallsObjectToolCallsItems {
 

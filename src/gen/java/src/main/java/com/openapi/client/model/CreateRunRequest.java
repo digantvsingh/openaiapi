@@ -60,7 +60,7 @@ public class CreateRunRequest {
   private BigDecimal topP = new BigDecimal(1);
 
   @JsonProperty("stream")
-  private Boolean stream = null;
+  private boolean stream = false;
 
   @JsonProperty("max_prompt_tokens")
   private Integer maxPromptTokens = null;
@@ -75,7 +75,7 @@ public class CreateRunRequest {
   private AssistantsApiToolChoiceOption toolChoice = null;
 
   @JsonProperty("parallel_tool_calls")
-  private Boolean parallelToolCalls = null;
+  private boolean parallelToolCalls = false;
 
   @JsonProperty("response_format")
   private AssistantsApiResponseFormatOption responseFormat = null;
@@ -262,7 +262,7 @@ public class CreateRunRequest {
     this.topP = topP;
   }
 
-  public CreateRunRequest stream(Boolean stream) {
+  public CreateRunRequest stream(boolean stream) {
     this.stream = stream;
     return this;
   }
@@ -272,11 +272,11 @@ public class CreateRunRequest {
    * @return stream
   **/
   @Schema(description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
-  public Boolean isStream() {
+  public boolean isStream() {
     return stream;
   }
 
-  public void setStream(Boolean stream) {
+  public void setStream(boolean stream) {
     this.stream = stream;
   }
 
@@ -354,7 +354,7 @@ public class CreateRunRequest {
     this.toolChoice = toolChoice;
   }
 
-  public CreateRunRequest parallelToolCalls(Boolean parallelToolCalls) {
+  public CreateRunRequest parallelToolCalls(boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
     return this;
   }
@@ -364,11 +364,11 @@ public class CreateRunRequest {
    * @return parallelToolCalls
   **/
   @Schema(description = "")
-  public Boolean getParallelToolCalls() {
+  public boolean getParallelToolCalls() {
     return parallelToolCalls;
   }
 
-  public void setParallelToolCalls(Boolean parallelToolCalls) {
+  public void setParallelToolCalls(boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
 
