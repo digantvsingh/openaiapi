@@ -17,6 +17,8 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.RunCompletionUsageCompletionTokenDetails;
+import com.openapi.client.model.RunCompletionUsagePromptTokenDetails;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * Usage statistics related to the run. This value will be &#x60;null&#x60; if the run is not in a terminal state (i.e. &#x60;in_progress&#x60;, &#x60;queued&#x60;, etc.).
@@ -33,6 +35,12 @@ public class RunCompletionUsage {
 
   @JsonProperty("total_tokens")
   private Integer totalTokens = null;
+
+  @JsonProperty("completion_token_details")
+  private RunCompletionUsageCompletionTokenDetails completionTokenDetails = null;
+
+  @JsonProperty("prompt_token_details")
+  private RunCompletionUsagePromptTokenDetails promptTokenDetails = null;
 
   public RunCompletionUsage completionTokens(Integer completionTokens) {
     this.completionTokens = completionTokens;
@@ -88,6 +96,42 @@ public class RunCompletionUsage {
     this.totalTokens = totalTokens;
   }
 
+  public RunCompletionUsage completionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
+    this.completionTokenDetails = completionTokenDetails;
+    return this;
+  }
+
+   /**
+   * Get completionTokenDetails
+   * @return completionTokenDetails
+  **/
+  @Schema(description = "")
+  public RunCompletionUsageCompletionTokenDetails getCompletionTokenDetails() {
+    return completionTokenDetails;
+  }
+
+  public void setCompletionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
+    this.completionTokenDetails = completionTokenDetails;
+  }
+
+  public RunCompletionUsage promptTokenDetails(RunCompletionUsagePromptTokenDetails promptTokenDetails) {
+    this.promptTokenDetails = promptTokenDetails;
+    return this;
+  }
+
+   /**
+   * Get promptTokenDetails
+   * @return promptTokenDetails
+  **/
+  @Schema(description = "")
+  public RunCompletionUsagePromptTokenDetails getPromptTokenDetails() {
+    return promptTokenDetails;
+  }
+
+  public void setPromptTokenDetails(RunCompletionUsagePromptTokenDetails promptTokenDetails) {
+    this.promptTokenDetails = promptTokenDetails;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -100,12 +144,14 @@ public class RunCompletionUsage {
     RunCompletionUsage runCompletionUsage = (RunCompletionUsage) o;
     return Objects.equals(this.completionTokens, runCompletionUsage.completionTokens) &&
         Objects.equals(this.promptTokens, runCompletionUsage.promptTokens) &&
-        Objects.equals(this.totalTokens, runCompletionUsage.totalTokens);
+        Objects.equals(this.totalTokens, runCompletionUsage.totalTokens) &&
+        Objects.equals(this.completionTokenDetails, runCompletionUsage.completionTokenDetails) &&
+        Objects.equals(this.promptTokenDetails, runCompletionUsage.promptTokenDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokenDetails, promptTokenDetails);
   }
 
 
@@ -117,6 +163,8 @@ public class RunCompletionUsage {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
+    sb.append("    completionTokenDetails: ").append(toIndentedString(completionTokenDetails)).append("\n");
+    sb.append("    promptTokenDetails: ").append(toIndentedString(promptTokenDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }
