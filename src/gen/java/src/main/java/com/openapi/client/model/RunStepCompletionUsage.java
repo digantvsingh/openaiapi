@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.RunCompletionUsageCompletionTokenDetails;
+import com.openapi.client.model.RunCompletionUsageCompletionTokensDetails;
 import com.openapi.client.model.RunCompletionUsagePromptTokenDetails;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
@@ -37,7 +37,7 @@ public class RunStepCompletionUsage {
   private Integer totalTokens = null;
 
   @JsonProperty("completion_token_details")
-  private RunCompletionUsageCompletionTokenDetails completionTokenDetails = null;
+  private RunCompletionUsageCompletionTokensDetails completionTokenDetails = null;
 
   @JsonProperty("prompt_token_details")
   private RunCompletionUsagePromptTokenDetails promptTokenDetails = null;
@@ -96,7 +96,7 @@ public class RunStepCompletionUsage {
     this.totalTokens = totalTokens;
   }
 
-  public RunStepCompletionUsage completionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
+  public RunStepCompletionUsage completionTokenDetails(RunCompletionUsageCompletionTokensDetails completionTokenDetails) {
     this.completionTokenDetails = completionTokenDetails;
     return this;
   }
@@ -106,11 +106,11 @@ public class RunStepCompletionUsage {
    * @return completionTokenDetails
   **/
   @Schema(description = "")
-  public RunCompletionUsageCompletionTokenDetails getCompletionTokenDetails() {
+  public RunCompletionUsageCompletionTokensDetails getCompletionTokenDetails() {
     return completionTokenDetails;
   }
 
-  public void setCompletionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
+  public void setCompletionTokenDetails(RunCompletionUsageCompletionTokensDetails completionTokenDetails) {
     this.completionTokenDetails = completionTokenDetails;
   }
 

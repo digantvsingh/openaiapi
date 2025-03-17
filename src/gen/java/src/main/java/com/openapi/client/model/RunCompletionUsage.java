@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.RunCompletionUsageCompletionTokenDetails;
+import com.openapi.client.model.RunCompletionUsageCompletionTokensDetails;
 import com.openapi.client.model.RunCompletionUsagePromptTokenDetails;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
@@ -36,8 +36,8 @@ public class RunCompletionUsage {
   @JsonProperty("total_tokens")
   private Integer totalTokens = null;
 
-  @JsonProperty("completion_token_details")
-  private RunCompletionUsageCompletionTokenDetails completionTokenDetails = null;
+  @JsonProperty("completion_tokens_details")
+  private RunCompletionUsageCompletionTokensDetails completionTokensDetails = null;
 
   @JsonProperty("prompt_token_details")
   private RunCompletionUsagePromptTokenDetails promptTokenDetails = null;
@@ -96,22 +96,22 @@ public class RunCompletionUsage {
     this.totalTokens = totalTokens;
   }
 
-  public RunCompletionUsage completionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
-    this.completionTokenDetails = completionTokenDetails;
+  public RunCompletionUsage completionTokensDetails(RunCompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
     return this;
   }
 
    /**
-   * Get completionTokenDetails
-   * @return completionTokenDetails
+   * Get completionTokensDetails
+   * @return completionTokensDetails
   **/
   @Schema(description = "")
-  public RunCompletionUsageCompletionTokenDetails getCompletionTokenDetails() {
-    return completionTokenDetails;
+  public RunCompletionUsageCompletionTokensDetails getCompletionTokensDetails() {
+    return completionTokensDetails;
   }
 
-  public void setCompletionTokenDetails(RunCompletionUsageCompletionTokenDetails completionTokenDetails) {
-    this.completionTokenDetails = completionTokenDetails;
+  public void setCompletionTokensDetails(RunCompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
   }
 
   public RunCompletionUsage promptTokenDetails(RunCompletionUsagePromptTokenDetails promptTokenDetails) {
@@ -145,13 +145,13 @@ public class RunCompletionUsage {
     return Objects.equals(this.completionTokens, runCompletionUsage.completionTokens) &&
         Objects.equals(this.promptTokens, runCompletionUsage.promptTokens) &&
         Objects.equals(this.totalTokens, runCompletionUsage.totalTokens) &&
-        Objects.equals(this.completionTokenDetails, runCompletionUsage.completionTokenDetails) &&
+        Objects.equals(this.completionTokensDetails, runCompletionUsage.completionTokensDetails) &&
         Objects.equals(this.promptTokenDetails, runCompletionUsage.promptTokenDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokenDetails, promptTokenDetails);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokensDetails, promptTokenDetails);
   }
 
 
@@ -163,7 +163,7 @@ public class RunCompletionUsage {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
-    sb.append("    completionTokenDetails: ").append(toIndentedString(completionTokenDetails)).append("\n");
+    sb.append("    completionTokensDetails: ").append(toIndentedString(completionTokensDetails)).append("\n");
     sb.append("    promptTokenDetails: ").append(toIndentedString(promptTokenDetails)).append("\n");
     sb.append("}");
     return sb.toString();
