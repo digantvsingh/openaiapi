@@ -18,10 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.AssistantsApiResponseFormatOption;
-import com.openapi.client.model.AssistantsApiToolChoiceOption;
 import com.openapi.client.model.CreateThreadAndRunRequestToolResources;
 import com.openapi.client.model.CreateThreadRequest;
-import com.openapi.client.model.TruncationObject;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class CreateThreadAndRunRequest {
   private CreateThreadAndRunRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(1);
@@ -70,10 +69,10 @@ public class CreateThreadAndRunRequest {
   private Integer maxCompletionTokens = null;
 
   @JsonProperty("truncation_strategy")
-  private TruncationObject truncationStrategy = null;
+  private AllOfCreateThreadAndRunRequestTruncationStrategy truncationStrategy = null;
 
   @JsonProperty("tool_choice")
-  private AssistantsApiToolChoiceOption toolChoice = null;
+  private AllOfCreateThreadAndRunRequestToolChoice toolChoice = null;
 
   @JsonProperty("parallel_tool_calls")
   private Boolean parallelToolCalls = null;
@@ -197,21 +196,21 @@ public class CreateThreadAndRunRequest {
     this.toolResources = toolResources;
   }
 
-  public CreateThreadAndRunRequest metadata(Object metadata) {
+  public CreateThreadAndRunRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 
@@ -311,7 +310,7 @@ public class CreateThreadAndRunRequest {
     this.maxCompletionTokens = maxCompletionTokens;
   }
 
-  public CreateThreadAndRunRequest truncationStrategy(TruncationObject truncationStrategy) {
+  public CreateThreadAndRunRequest truncationStrategy(AllOfCreateThreadAndRunRequestTruncationStrategy truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
     return this;
   }
@@ -321,15 +320,15 @@ public class CreateThreadAndRunRequest {
    * @return truncationStrategy
   **/
   @Schema(description = "")
-  public TruncationObject getTruncationStrategy() {
+  public AllOfCreateThreadAndRunRequestTruncationStrategy getTruncationStrategy() {
     return truncationStrategy;
   }
 
-  public void setTruncationStrategy(TruncationObject truncationStrategy) {
+  public void setTruncationStrategy(AllOfCreateThreadAndRunRequestTruncationStrategy truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
   }
 
-  public CreateThreadAndRunRequest toolChoice(AssistantsApiToolChoiceOption toolChoice) {
+  public CreateThreadAndRunRequest toolChoice(AllOfCreateThreadAndRunRequestToolChoice toolChoice) {
     this.toolChoice = toolChoice;
     return this;
   }
@@ -339,11 +338,11 @@ public class CreateThreadAndRunRequest {
    * @return toolChoice
   **/
   @Schema(description = "")
-  public AssistantsApiToolChoiceOption getToolChoice() {
+  public AllOfCreateThreadAndRunRequestToolChoice getToolChoice() {
     return toolChoice;
   }
 
-  public void setToolChoice(AssistantsApiToolChoiceOption toolChoice) {
+  public void setToolChoice(AllOfCreateThreadAndRunRequestToolChoice toolChoice) {
     this.toolChoice = toolChoice;
   }
 

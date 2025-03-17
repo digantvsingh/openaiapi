@@ -17,10 +17,8 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 /**
  * BatchesBody
  */
@@ -100,7 +98,7 @@ public class BatchesBody {
   private CompletionWindowEnum completionWindow = null;
 
   @JsonProperty("metadata")
-  private Map<String, String> metadata = null;
+  private Metadata metadata = null;
 
   public BatchesBody inputFileId(String inputFileId) {
     this.inputFileId = inputFileId;
@@ -108,10 +106,10 @@ public class BatchesBody {
   }
 
    /**
-   * The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose &#x60;batch&#x60;. The file can contain up to 50,000 requests, and can be up to 100 MB in size. 
+   * The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose &#x60;batch&#x60;. The file can contain up to 50,000 requests, and can be up to 200 MB in size. 
    * @return inputFileId
   **/
-  @Schema(required = true, description = "The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 100 MB in size. ")
+  @Schema(required = true, description = "The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size. ")
   public String getInputFileId() {
     return inputFileId;
   }
@@ -156,29 +154,21 @@ public class BatchesBody {
     this.completionWindow = completionWindow;
   }
 
-  public BatchesBody metadata(Map<String, String> metadata) {
+  public BatchesBody metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
-  public BatchesBody putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<String, String>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
    /**
-   * Optional custom metadata for the batch.
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Optional custom metadata for the batch.")
-  public Map<String, String> getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Map<String, String> metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

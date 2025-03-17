@@ -42,6 +42,7 @@ public class ChatCompletionStreamResponseDelta {
    * The role of the author of this message.
    */
   public enum RoleEnum {
+    DEVELOPER("developer"),
     SYSTEM("system"),
     USER("user"),
     ASSISTANT("assistant"),

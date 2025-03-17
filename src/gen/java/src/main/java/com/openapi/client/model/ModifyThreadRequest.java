@@ -17,7 +17,8 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.ThreadObjectToolResources;
+import com.openapi.client.model.Metadata;
+import com.openapi.client.model.ModifyThreadRequestToolResources;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * ModifyThreadRequest
@@ -27,12 +28,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ModifyThreadRequest {
   @JsonProperty("tool_resources")
-  private ThreadObjectToolResources toolResources = null;
+  private ModifyThreadRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
-  public ModifyThreadRequest toolResources(ThreadObjectToolResources toolResources) {
+  public ModifyThreadRequest toolResources(ModifyThreadRequestToolResources toolResources) {
     this.toolResources = toolResources;
     return this;
   }
@@ -42,29 +43,29 @@ public class ModifyThreadRequest {
    * @return toolResources
   **/
   @Schema(description = "")
-  public ThreadObjectToolResources getToolResources() {
+  public ModifyThreadRequestToolResources getToolResources() {
     return toolResources;
   }
 
-  public void setToolResources(ThreadObjectToolResources toolResources) {
+  public void setToolResources(ModifyThreadRequestToolResources toolResources) {
     this.toolResources = toolResources;
   }
 
-  public ModifyThreadRequest metadata(Object metadata) {
+  public ModifyThreadRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

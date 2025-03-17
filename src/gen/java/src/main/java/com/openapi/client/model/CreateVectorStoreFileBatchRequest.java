@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.ChunkingStrategyRequestParam;
+import com.openapi.client.model.VectorStoreFileAttributes;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class CreateVectorStoreFileBatchRequest {
 
   @JsonProperty("chunking_strategy")
   private ChunkingStrategyRequestParam chunkingStrategy = null;
+
+  @JsonProperty("attributes")
+  private VectorStoreFileAttributes attributes = null;
 
   public CreateVectorStoreFileBatchRequest fileIds(List<String> fileIds) {
     this.fileIds = fileIds;
@@ -75,6 +79,24 @@ public class CreateVectorStoreFileBatchRequest {
     this.chunkingStrategy = chunkingStrategy;
   }
 
+  public CreateVectorStoreFileBatchRequest attributes(VectorStoreFileAttributes attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
+  **/
+  @Schema(description = "")
+  public VectorStoreFileAttributes getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(VectorStoreFileAttributes attributes) {
+    this.attributes = attributes;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -86,12 +108,13 @@ public class CreateVectorStoreFileBatchRequest {
     }
     CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest = (CreateVectorStoreFileBatchRequest) o;
     return Objects.equals(this.fileIds, createVectorStoreFileBatchRequest.fileIds) &&
-        Objects.equals(this.chunkingStrategy, createVectorStoreFileBatchRequest.chunkingStrategy);
+        Objects.equals(this.chunkingStrategy, createVectorStoreFileBatchRequest.chunkingStrategy) &&
+        Objects.equals(this.attributes, createVectorStoreFileBatchRequest.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileIds, chunkingStrategy);
+    return Objects.hash(fileIds, chunkingStrategy, attributes);
   }
 
 
@@ -102,6 +125,7 @@ public class CreateVectorStoreFileBatchRequest {
     
     sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    chunkingStrategy: ").append(toIndentedString(chunkingStrategy)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

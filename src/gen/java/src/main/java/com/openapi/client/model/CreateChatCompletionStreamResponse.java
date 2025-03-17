@@ -23,9 +23,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * Represents a streamed chunk of a chat completion response returned by the model, based on the provided input.  [Learn more](/docs/guides/streaming-responses). 
  */
-@Schema(description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")
+@Schema(description = "Represents a streamed chunk of a chat completion response returned by the model, based on the provided input.  [Learn more](/docs/guides/streaming-responses). ")
 
 
 public class CreateChatCompletionStreamResponse {
@@ -42,7 +42,7 @@ public class CreateChatCompletionStreamResponse {
   private String model = null;
 
   /**
-   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * The service tier used for processing the request.
    */
   public enum ServiceTierEnum {
     SCALE("scale"),
@@ -197,10 +197,10 @@ public class CreateChatCompletionStreamResponse {
   }
 
    /**
-   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * The service tier used for processing the request.
    * @return serviceTier
   **/
-  @Schema(example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+  @Schema(example = "scale", description = "The service tier used for processing the request.")
   public ServiceTierEnum getServiceTier() {
     return serviceTier;
   }

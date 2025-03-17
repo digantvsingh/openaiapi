@@ -9,10 +9,14 @@ import com.openapi.client.model.DeleteVectorStoreFileResponse;
 import com.openapi.client.model.DeleteVectorStoreResponse;
 import com.openapi.client.model.ListVectorStoreFilesResponse;
 import com.openapi.client.model.ListVectorStoresResponse;
+import com.openapi.client.model.UpdateVectorStoreFileAttributesRequest;
 import com.openapi.client.model.UpdateVectorStoreRequest;
 import com.openapi.client.model.VectorStoreFileBatchObject;
+import com.openapi.client.model.VectorStoreFileContentResponse;
 import com.openapi.client.model.VectorStoreFileObject;
 import com.openapi.client.model.VectorStoreObject;
+import com.openapi.client.model.VectorStoreSearchRequest;
+import com.openapi.client.model.VectorStoreSearchResultsPage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -531,7 +535,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param filter Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. (optional)
      * @return ListVectorStoreFilesResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
@@ -549,7 +553,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param filter Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. (optional)
      * @return ResponseEntity&lt;ListVectorStoreFilesResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
@@ -599,7 +603,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param filter Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. (optional)
      * @return ListVectorStoreFilesResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
@@ -616,7 +620,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param filter Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. (optional)
      * @return ResponseEntity&lt;ListVectorStoreFilesResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
@@ -660,7 +664,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ListVectorStoresResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
@@ -675,7 +679,7 @@ public class VectorStoresApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ResponseEntity&lt;ListVectorStoresResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
@@ -756,6 +760,177 @@ public class VectorStoresApi {
         String[] authNames = new String[] { "ApiKeyAuth" };
 
         ParameterizedTypeReference<VectorStoreObject> returnType = new ParameterizedTypeReference<VectorStoreObject>() {};
+        return apiClient.invokeAPI(path, HttpMethod.POST, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    }
+    /**
+     * Retrieve the parsed contents of a vector store file.
+     * 
+     * <p><b>200</b> - OK
+     * @param vectorStoreId The ID of the vector store. (required)
+     * @param fileId The ID of the file within the vector store. (required)
+     * @return VectorStoreFileContentResponse
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public VectorStoreFileContentResponse retrieveVectorStoreFileContent(String vectorStoreId, String fileId) throws RestClientException {
+        return retrieveVectorStoreFileContentWithHttpInfo(vectorStoreId, fileId).getBody();
+    }
+
+    /**
+     * Retrieve the parsed contents of a vector store file.
+     * 
+     * <p><b>200</b> - OK
+     * @param vectorStoreId The ID of the vector store. (required)
+     * @param fileId The ID of the file within the vector store. (required)
+     * @return ResponseEntity&lt;VectorStoreFileContentResponse&gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity<VectorStoreFileContentResponse> retrieveVectorStoreFileContentWithHttpInfo(String vectorStoreId, String fileId) throws RestClientException {
+        Object postBody = null;
+        // verify the required parameter 'vectorStoreId' is set
+        if (vectorStoreId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'vectorStoreId' when calling retrieveVectorStoreFileContent");
+        }
+        // verify the required parameter 'fileId' is set
+        if (fileId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fileId' when calling retrieveVectorStoreFileContent");
+        }
+        // create path and map variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("vector_store_id", vectorStoreId);
+        uriVariables.put("file_id", fileId);
+        String path = UriComponentsBuilder.fromPath("/vector_stores/{vector_store_id}/files/{file_id}/content").buildAndExpand(uriVariables).toUriString();
+        
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
+        final HttpHeaders headerParams = new HttpHeaders();
+        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+
+        final String[] accepts = { 
+            "application/json"
+         };
+        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
+        final String[] contentTypes = {  };
+        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
+
+        String[] authNames = new String[] { "ApiKeyAuth" };
+
+        ParameterizedTypeReference<VectorStoreFileContentResponse> returnType = new ParameterizedTypeReference<VectorStoreFileContentResponse>() {};
+        return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    }
+    /**
+     * Search a vector store for relevant chunks based on a query and file attributes filter.
+     * 
+     * <p><b>200</b> - OK
+     * @param body  (required)
+     * @param vectorStoreId The ID of the vector store to search. (required)
+     * @return VectorStoreSearchResultsPage
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public VectorStoreSearchResultsPage searchVectorStore(VectorStoreSearchRequest body, String vectorStoreId) throws RestClientException {
+        return searchVectorStoreWithHttpInfo(body, vectorStoreId).getBody();
+    }
+
+    /**
+     * Search a vector store for relevant chunks based on a query and file attributes filter.
+     * 
+     * <p><b>200</b> - OK
+     * @param body  (required)
+     * @param vectorStoreId The ID of the vector store to search. (required)
+     * @return ResponseEntity&lt;VectorStoreSearchResultsPage&gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity<VectorStoreSearchResultsPage> searchVectorStoreWithHttpInfo(VectorStoreSearchRequest body, String vectorStoreId) throws RestClientException {
+        Object postBody = body;
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'body' when calling searchVectorStore");
+        }
+        // verify the required parameter 'vectorStoreId' is set
+        if (vectorStoreId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'vectorStoreId' when calling searchVectorStore");
+        }
+        // create path and map variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("vector_store_id", vectorStoreId);
+        String path = UriComponentsBuilder.fromPath("/vector_stores/{vector_store_id}/search").buildAndExpand(uriVariables).toUriString();
+        
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
+        final HttpHeaders headerParams = new HttpHeaders();
+        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+
+        final String[] accepts = { 
+            "application/json"
+         };
+        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
+        final String[] contentTypes = { 
+            "application/json"
+         };
+        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
+
+        String[] authNames = new String[] { "ApiKeyAuth" };
+
+        ParameterizedTypeReference<VectorStoreSearchResultsPage> returnType = new ParameterizedTypeReference<VectorStoreSearchResultsPage>() {};
+        return apiClient.invokeAPI(path, HttpMethod.POST, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    }
+    /**
+     * Update attributes on a vector store file.
+     * 
+     * <p><b>200</b> - OK
+     * @param body  (required)
+     * @param vectorStoreId The ID of the vector store the file belongs to. (required)
+     * @param fileId The ID of the file to update attributes. (required)
+     * @return VectorStoreFileObject
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public VectorStoreFileObject updateVectorStoreFileAttributes(UpdateVectorStoreFileAttributesRequest body, String vectorStoreId, String fileId) throws RestClientException {
+        return updateVectorStoreFileAttributesWithHttpInfo(body, vectorStoreId, fileId).getBody();
+    }
+
+    /**
+     * Update attributes on a vector store file.
+     * 
+     * <p><b>200</b> - OK
+     * @param body  (required)
+     * @param vectorStoreId The ID of the vector store the file belongs to. (required)
+     * @param fileId The ID of the file to update attributes. (required)
+     * @return ResponseEntity&lt;VectorStoreFileObject&gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity<VectorStoreFileObject> updateVectorStoreFileAttributesWithHttpInfo(UpdateVectorStoreFileAttributesRequest body, String vectorStoreId, String fileId) throws RestClientException {
+        Object postBody = body;
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'body' when calling updateVectorStoreFileAttributes");
+        }
+        // verify the required parameter 'vectorStoreId' is set
+        if (vectorStoreId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'vectorStoreId' when calling updateVectorStoreFileAttributes");
+        }
+        // verify the required parameter 'fileId' is set
+        if (fileId == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'fileId' when calling updateVectorStoreFileAttributes");
+        }
+        // create path and map variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("vector_store_id", vectorStoreId);
+        uriVariables.put("file_id", fileId);
+        String path = UriComponentsBuilder.fromPath("/vector_stores/{vector_store_id}/files/{file_id}").buildAndExpand(uriVariables).toUriString();
+        
+        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<String, String>();
+        final HttpHeaders headerParams = new HttpHeaders();
+        final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
+
+        final String[] accepts = { 
+            "application/json"
+         };
+        final List<MediaType> accept = apiClient.selectHeaderAccept(accepts);
+        final String[] contentTypes = { 
+            "application/json"
+         };
+        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);
+
+        String[] authNames = new String[] { "ApiKeyAuth" };
+
+        ParameterizedTypeReference<VectorStoreFileObject> returnType = new ParameterizedTypeReference<VectorStoreFileObject>() {};
         return apiClient.invokeAPI(path, HttpMethod.POST, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
 }

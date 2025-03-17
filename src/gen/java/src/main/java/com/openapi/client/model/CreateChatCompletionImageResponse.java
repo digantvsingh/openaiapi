@@ -16,9 +16,9 @@ import java.util.Objects;
 import java.util.Arrays;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
- * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input. [Learn more](/docs/guides/streaming-responses).
  */
-@Schema(description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")
+@Schema(description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input. [Learn more](/docs/guides/streaming-responses).")
 
 
 public class CreateChatCompletionImageResponse {

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**TypeEnum**](#TypeEnum) | The type of the tool. Currently, only &#x60;function&#x60; is supported. | 
-**function** | [**ChatCompletionNamedToolChoiceFunction**](ChatCompletionNamedToolChoiceFunction.md) |  | 
+**function** | [**AssistantsNamedToolChoiceFunction**](AssistantsNamedToolChoiceFunction.md) |  | 
 
 <a name="TypeEnum"></a>
 ## Enum: TypeEnum

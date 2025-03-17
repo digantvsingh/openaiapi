@@ -19,13 +19,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.CreateMessageRequest;
 import com.openapi.client.model.CreateThreadRequestToolResources;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * CreateThreadRequest
+ * Options to create a new thread. If no thread is provided when running a  request, an empty thread will be created. 
  */
-
+@Schema(description = "Options to create a new thread. If no thread is provided when running a  request, an empty thread will be created. ")
 
 
 public class CreateThreadRequest {
@@ -36,7 +37,7 @@ public class CreateThreadRequest {
   private CreateThreadRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   public CreateThreadRequest messages(List<CreateMessageRequest> messages) {
     this.messages = messages;
@@ -82,21 +83,21 @@ public class CreateThreadRequest {
     this.toolResources = toolResources;
   }
 
-  public CreateThreadRequest metadata(Object metadata) {
+  public CreateThreadRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

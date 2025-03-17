@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.AssistantObjectToolResources;
 import com.openapi.client.model.AssistantsApiResponseFormatOption;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class AssistantObject {
   private AssistantObjectToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(1);
@@ -195,10 +196,10 @@ public class AssistantObject {
   }
 
    /**
-   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
   **/
-  @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   public String getModel() {
     return model;
   }
@@ -266,21 +267,21 @@ public class AssistantObject {
     this.toolResources = toolResources;
   }
 
-  public AssistantObject metadata(Object metadata) {
+  public AssistantObject metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(required = true, description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

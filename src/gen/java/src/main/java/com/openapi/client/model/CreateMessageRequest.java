@@ -17,7 +17,8 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.MessageObjectAttachments;
+import com.openapi.client.model.CreateMessageRequestAttachments;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +67,10 @@ public class CreateMessageRequest {
   private String content = null;
 
   @JsonProperty("attachments")
-  private List<MessageObjectAttachments> attachments = null;
+  private List<CreateMessageRequestAttachments> attachments = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   public CreateMessageRequest role(RoleEnum role) {
     this.role = role;
@@ -95,7 +96,7 @@ public class CreateMessageRequest {
   }
 
    /**
-   * The content of the message.
+   * Get content
    * @return content
   **/
   @Schema(required = true, description = "The content of the message.")
@@ -107,14 +108,14 @@ public class CreateMessageRequest {
     this.content = content;
   }
 
-  public CreateMessageRequest attachments(List<MessageObjectAttachments> attachments) {
+  public CreateMessageRequest attachments(List<CreateMessageRequestAttachments> attachments) {
     this.attachments = attachments;
     return this;
   }
 
-  public CreateMessageRequest addAttachmentsItem(MessageObjectAttachments attachmentsItem) {
+  public CreateMessageRequest addAttachmentsItem(CreateMessageRequestAttachments attachmentsItem) {
     if (this.attachments == null) {
-      this.attachments = new ArrayList<MessageObjectAttachments>();
+      this.attachments = new ArrayList<CreateMessageRequestAttachments>();
     }
     this.attachments.add(attachmentsItem);
     return this;
@@ -125,29 +126,29 @@ public class CreateMessageRequest {
    * @return attachments
   **/
   @Schema(description = "A list of files attached to the message, and the tools they should be added to.")
-  public List<MessageObjectAttachments> getAttachments() {
+  public List<CreateMessageRequestAttachments> getAttachments() {
     return attachments;
   }
 
-  public void setAttachments(List<MessageObjectAttachments> attachments) {
+  public void setAttachments(List<CreateMessageRequestAttachments> attachments) {
     this.attachments = attachments;
   }
 
-  public CreateMessageRequest metadata(Object metadata) {
+  public CreateMessageRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

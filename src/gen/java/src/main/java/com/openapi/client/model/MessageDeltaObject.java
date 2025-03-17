@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Represents a message delta i.e. any changed fields on a message during streaming. ")
 
 
-public class MessageDeltaObject implements  AssistantStreamEvent  {
+public class MessageDeltaObject {
   @JsonProperty("id")
   private String id = null;
 

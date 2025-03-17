@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function. ")
 
 
-public class ChatCompletionFunctionCallOption implements OneOfCreateChatCompletionRequestFunctionCall {
+public class ChatCompletionFunctionCallOption {
   @JsonProperty("name")
   private String name = null;
 

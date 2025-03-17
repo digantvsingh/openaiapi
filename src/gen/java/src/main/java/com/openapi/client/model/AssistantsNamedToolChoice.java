@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.ChatCompletionNamedToolChoiceFunction;
+import com.openapi.client.model.AssistantsNamedToolChoiceFunction;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * Specifies a tool the model should use. Use to force the model to call a specific tool.
@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Specifies a tool the model should use. Use to force the model to call a specific tool.")
 
 
-public class AssistantsNamedToolChoice implements AssistantsApiToolChoiceOption {
+public class AssistantsNamedToolChoice extends AssistantsApiToolChoiceOption {
   /**
    * The type of the tool. If type is &#x60;function&#x60;, the function name must be set
    */
@@ -62,7 +62,7 @@ public class AssistantsNamedToolChoice implements AssistantsApiToolChoiceOption 
   private TypeEnum type = null;
 
   @JsonProperty("function")
-  private ChatCompletionNamedToolChoiceFunction function = null;
+  private AssistantsNamedToolChoiceFunction function = null;
 
   public AssistantsNamedToolChoice type(TypeEnum type) {
     this.type = type;
@@ -82,7 +82,7 @@ public class AssistantsNamedToolChoice implements AssistantsApiToolChoiceOption 
     this.type = type;
   }
 
-  public AssistantsNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public AssistantsNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -92,11 +92,11 @@ public class AssistantsNamedToolChoice implements AssistantsApiToolChoiceOption 
    * @return function
   **/
   @Schema(description = "")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

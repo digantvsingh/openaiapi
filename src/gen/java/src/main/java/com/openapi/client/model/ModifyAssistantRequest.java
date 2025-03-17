@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.AssistantsApiResponseFormatOption;
+import com.openapi.client.model.Metadata;
 import com.openapi.client.model.ModifyAssistantRequestToolResources;
+import com.openapi.client.model.ReasoningEffort;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,6 +34,9 @@ import java.util.List;
 public class ModifyAssistantRequest {
   @JsonProperty("model")
   private AnyOfModifyAssistantRequestModel model = null;
+
+  @JsonProperty("reasoning_effort")
+  private ReasoningEffort reasoningEffort = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -49,7 +54,7 @@ public class ModifyAssistantRequest {
   private ModifyAssistantRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(1);
@@ -66,16 +71,34 @@ public class ModifyAssistantRequest {
   }
 
    /**
-   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
   **/
-  @Schema(description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @Schema(description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   public AnyOfModifyAssistantRequestModel getModel() {
     return model;
   }
 
   public void setModel(AnyOfModifyAssistantRequestModel model) {
     this.model = model;
+  }
+
+  public ModifyAssistantRequest reasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+    return this;
+  }
+
+   /**
+   * Get reasoningEffort
+   * @return reasoningEffort
+  **/
+  @Schema(description = "")
+  public ReasoningEffort getReasoningEffort() {
+    return reasoningEffort;
+  }
+
+  public void setReasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
   }
 
   public ModifyAssistantRequest name(String name) {
@@ -176,21 +199,21 @@ public class ModifyAssistantRequest {
     this.toolResources = toolResources;
   }
 
-  public ModifyAssistantRequest metadata(Object metadata) {
+  public ModifyAssistantRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 
@@ -263,6 +286,7 @@ public class ModifyAssistantRequest {
     }
     ModifyAssistantRequest modifyAssistantRequest = (ModifyAssistantRequest) o;
     return Objects.equals(this.model, modifyAssistantRequest.model) &&
+        Objects.equals(this.reasoningEffort, modifyAssistantRequest.reasoningEffort) &&
         Objects.equals(this.name, modifyAssistantRequest.name) &&
         Objects.equals(this.description, modifyAssistantRequest.description) &&
         Objects.equals(this.instructions, modifyAssistantRequest.instructions) &&
@@ -276,7 +300,7 @@ public class ModifyAssistantRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
+    return Objects.hash(model, reasoningEffort, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
 
@@ -286,6 +310,7 @@ public class ModifyAssistantRequest {
     sb.append("class ModifyAssistantRequest {\n");
     
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");

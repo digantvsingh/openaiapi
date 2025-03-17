@@ -28,41 +28,38 @@ import java.util.List;
 
 
 public class ListFilesResponse {
+  @JsonProperty("object")
+  private String object = null;
+
   @JsonProperty("data")
   private List<OpenAIFile> data = new ArrayList<OpenAIFile>();
 
-  /**
-   * Gets or Sets object
-   */
-  public enum ObjectEnum {
-    LIST("list");
+  @JsonProperty("first_id")
+  private String firstId = null;
 
-    private String value;
+  @JsonProperty("last_id")
+  private String lastId = null;
 
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
+  @JsonProperty("has_more")
+  private Boolean hasMore = null;
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    @JsonCreator
-    public static ObjectEnum fromValue(String input) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(input)) {
-          return b;
-        }
-      }
-      return null;
-    }
+  public ListFilesResponse object(String object) {
+    this.object = object;
+    return this;
+  }
 
-  }  @JsonProperty("object")
-  private ObjectEnum object = null;
+   /**
+   * Get object
+   * @return object
+  **/
+  @Schema(example = "list", required = true, description = "")
+  public String getObject() {
+    return object;
+  }
+
+  public void setObject(String object) {
+    this.object = object;
+  }
 
   public ListFilesResponse data(List<OpenAIFile> data) {
     this.data = data;
@@ -87,22 +84,58 @@ public class ListFilesResponse {
     this.data = data;
   }
 
-  public ListFilesResponse object(ObjectEnum object) {
-    this.object = object;
+  public ListFilesResponse firstId(String firstId) {
+    this.firstId = firstId;
     return this;
   }
 
    /**
-   * Get object
-   * @return object
+   * Get firstId
+   * @return firstId
   **/
-  @Schema(required = true, description = "")
-  public ObjectEnum getObject() {
-    return object;
+  @Schema(example = "file-abc123", required = true, description = "")
+  public String getFirstId() {
+    return firstId;
   }
 
-  public void setObject(ObjectEnum object) {
-    this.object = object;
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
+  }
+
+  public ListFilesResponse lastId(String lastId) {
+    this.lastId = lastId;
+    return this;
+  }
+
+   /**
+   * Get lastId
+   * @return lastId
+  **/
+  @Schema(example = "file-abc456", required = true, description = "")
+  public String getLastId() {
+    return lastId;
+  }
+
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+  public ListFilesResponse hasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+   /**
+   * Get hasMore
+   * @return hasMore
+  **/
+  @Schema(example = "false", required = true, description = "")
+  public Boolean isHasMore() {
+    return hasMore;
+  }
+
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -115,13 +148,16 @@ public class ListFilesResponse {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this.data, listFilesResponse.data) &&
-        Objects.equals(this.object, listFilesResponse.object);
+    return Objects.equals(this.object, listFilesResponse.object) &&
+        Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this.firstId, listFilesResponse.firstId) &&
+        Objects.equals(this.lastId, listFilesResponse.lastId) &&
+        Objects.equals(this.hasMore, listFilesResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, object);
+    return Objects.hash(object, data, firstId, lastId, hasMore);
   }
 
 
@@ -130,8 +166,11 @@ public class ListFilesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    object: ").append(toIndentedString(object)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

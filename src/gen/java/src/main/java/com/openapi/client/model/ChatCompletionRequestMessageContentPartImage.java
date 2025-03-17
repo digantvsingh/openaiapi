@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.ChatCompletionRequestMessageContentPartImageImageUrl;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
- * ChatCompletionRequestMessageContentPartImage
+ * Learn about [image inputs](/docs/guides/vision). 
  */
-
+@Schema(description = "Learn about [image inputs](/docs/guides/vision). ")
 
 
 public class ChatCompletionRequestMessageContentPartImage implements ChatCompletionRequestUserMessageContentPart {

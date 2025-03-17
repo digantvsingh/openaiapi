@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.CreateFineTuningJobRequestHyperparameters;
 import com.openapi.client.model.CreateFineTuningJobRequestIntegrations;
+import com.openapi.client.model.FineTuneMethod;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,16 +52,22 @@ public class CreateFineTuningJobRequest {
   @JsonProperty("seed")
   private Integer seed = null;
 
+  @JsonProperty("method")
+  private FineTuneMethod method = null;
+
+  @JsonProperty("metadata")
+  private Metadata metadata = null;
+
   public CreateFineTuningJobRequest model(AnyOfCreateFineTuningJobRequestModel model) {
     this.model = model;
     return this;
   }
 
    /**
-   * The name of the model to fine-tune. You can select one of the [supported models](/docs/guides/fine-tuning/which-models-can-be-fine-tuned). 
+   * The name of the model to fine-tune. You can select one of the [supported models](/docs/guides/fine-tuning#which-models-can-be-fine-tuned). 
    * @return model
   **/
-  @Schema(example = "gpt-4o-mini", required = true, description = "The name of the model to fine-tune. You can select one of the [supported models](/docs/guides/fine-tuning/which-models-can-be-fine-tuned). ")
+  @Schema(example = "gpt-4o-mini", required = true, description = "The name of the model to fine-tune. You can select one of the [supported models](/docs/guides/fine-tuning#which-models-can-be-fine-tuned). ")
   public AnyOfCreateFineTuningJobRequestModel getModel() {
     return model;
   }
@@ -74,10 +82,10 @@ public class CreateFineTuningJobRequest {
   }
 
    /**
-   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
    * @return trainingFile
   **/
-  @Schema(example = "file-abc123", required = true, description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
+  @Schema(example = "file-abc123", required = true, description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
   public String getTrainingFile() {
     return trainingFile;
   }
@@ -186,6 +194,42 @@ public class CreateFineTuningJobRequest {
     this.seed = seed;
   }
 
+  public CreateFineTuningJobRequest method(FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @Schema(description = "")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
+  public CreateFineTuningJobRequest metadata(Metadata metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @Schema(description = "")
+  public Metadata getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Metadata metadata) {
+    this.metadata = metadata;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -202,12 +246,14 @@ public class CreateFineTuningJobRequest {
         Objects.equals(this.suffix, createFineTuningJobRequest.suffix) &&
         Objects.equals(this.validationFile, createFineTuningJobRequest.validationFile) &&
         Objects.equals(this.integrations, createFineTuningJobRequest.integrations) &&
-        Objects.equals(this.seed, createFineTuningJobRequest.seed);
+        Objects.equals(this.seed, createFineTuningJobRequest.seed) &&
+        Objects.equals(this.method, createFineTuningJobRequest.method) &&
+        Objects.equals(this.metadata, createFineTuningJobRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed);
+    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed, method, metadata);
   }
 
 
@@ -223,6 +269,8 @@ public class CreateFineTuningJobRequest {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

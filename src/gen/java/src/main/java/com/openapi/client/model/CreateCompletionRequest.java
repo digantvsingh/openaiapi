@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.ChatCompletionStreamOptions;
+import com.openapi.client.model.StopConfiguration;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -61,10 +62,10 @@ public class CreateCompletionRequest {
   private BigDecimal presencePenalty = new BigDecimal(0);
 
   @JsonProperty("seed")
-  private Integer seed = null;
+  private Long seed = null;
 
   @JsonProperty("stop")
-  private OneOfCreateCompletionRequestStop stop = null;
+  private StopConfiguration stop = null;
 
   @JsonProperty("stream")
   private Boolean stream = false;
@@ -90,10 +91,10 @@ public class CreateCompletionRequest {
   }
 
    /**
-   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
   **/
-  @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   public AnyOfCreateCompletionRequestModel getModel() {
     return model;
   }
@@ -164,12 +165,12 @@ public class CreateCompletionRequest {
   }
 
    /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#x27;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#x27;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return frequencyPenalty
   **/
-  @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ")
   public BigDecimal getFrequencyPenalty() {
     return frequencyPenalty;
   }
@@ -269,12 +270,12 @@ public class CreateCompletionRequest {
   }
 
    /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#x27;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#x27;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return presencePenalty
   **/
-  @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ")
   public BigDecimal getPresencePenalty() {
     return presencePenalty;
   }
@@ -283,41 +284,39 @@ public class CreateCompletionRequest {
     this.presencePenalty = presencePenalty;
   }
 
-  public CreateCompletionRequest seed(Integer seed) {
+  public CreateCompletionRequest seed(Long seed) {
     this.seed = seed;
     return this;
   }
 
    /**
    * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
    * @return seed
   **/
   @Schema(description = "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
-  public Integer getSeed() {
+  public Long getSeed() {
     return seed;
   }
 
-  public void setSeed(Integer seed) {
+  public void setSeed(Long seed) {
     this.seed = seed;
   }
 
-  public CreateCompletionRequest stop(OneOfCreateCompletionRequestStop stop) {
+  public CreateCompletionRequest stop(StopConfiguration stop) {
     this.stop = stop;
     return this;
   }
 
    /**
-   * Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. 
+   * Get stop
    * @return stop
   **/
-  @Schema(description = "Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. ")
-  public OneOfCreateCompletionRequestStop getStop() {
+  @Schema(description = "")
+  public StopConfiguration getStop() {
     return stop;
   }
 
-  public void setStop(OneOfCreateCompletionRequestStop stop) {
+  public void setStop(StopConfiguration stop) {
     this.stop = stop;
   }
 
@@ -421,10 +420,10 @@ public class CreateCompletionRequest {
   }
 
    /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    * @return user
   **/
-  @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+  @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
   public String getUser() {
     return user;
   }

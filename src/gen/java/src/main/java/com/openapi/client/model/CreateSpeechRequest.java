@@ -33,14 +33,17 @@ public class CreateSpeechRequest {
   private String input = null;
 
   /**
-   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;ash&#x60;, &#x60;coral&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, &#x60;sage&#x60; and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    */
   public enum VoiceEnum {
     ALLOY("alloy"),
+    ASH("ash"),
+    CORAL("coral"),
     ECHO("echo"),
     FABLE("fable"),
     ONYX("onyx"),
     NOVA("nova"),
+    SAGE("sage"),
     SHIMMER("shimmer");
 
     private String value;
@@ -109,7 +112,7 @@ public class CreateSpeechRequest {
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
 
   @JsonProperty("speed")
-  private BigDecimal speed = new BigDecimal(1.0);
+  private BigDecimal speed = new BigDecimal(1);
 
   public CreateSpeechRequest model(AnyOfCreateSpeechRequestModel model) {
     this.model = model;
@@ -117,10 +120,10 @@ public class CreateSpeechRequest {
   }
 
    /**
-   * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+   * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
    * @return model
   **/
-  @Schema(required = true, description = "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` ")
+  @Schema(required = true, description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
   public AnyOfCreateSpeechRequestModel getModel() {
     return model;
   }
@@ -153,10 +156,10 @@ public class CreateSpeechRequest {
   }
 
    /**
-   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;ash&#x60;, &#x60;coral&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, &#x60;sage&#x60; and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    * @return voice
   **/
-  @Schema(required = true, description = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).")
+  @Schema(required = true, description = "The voice to use when generating the audio. Supported voices are `alloy`, `ash`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage` and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
   public VoiceEnum getVoice() {
     return voice;
   }

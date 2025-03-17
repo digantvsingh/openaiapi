@@ -20,10 +20,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(
   use = JsonTypeInfo.Id.NAME,
   include = JsonTypeInfo.As.PROPERTY,
-  property = "type")
+  property = "tool_choice")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = AssistantsNamedToolChoice.class, name = "AssistantsNamedToolChoice")
 })
-public interface AssistantsApiToolChoiceOption {
+public class AssistantsApiToolChoiceOption {
 
 }

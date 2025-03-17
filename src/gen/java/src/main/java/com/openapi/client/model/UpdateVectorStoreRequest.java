@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.VectorStoreExpirationAfter;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * UpdateVectorStoreRequest
@@ -30,10 +30,10 @@ public class UpdateVectorStoreRequest {
   private String name = null;
 
   @JsonProperty("expires_after")
-  private VectorStoreExpirationAfter expiresAfter = null;
+  private AllOfUpdateVectorStoreRequestExpiresAfter expiresAfter = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   public UpdateVectorStoreRequest name(String name) {
     this.name = name;
@@ -53,7 +53,7 @@ public class UpdateVectorStoreRequest {
     this.name = name;
   }
 
-  public UpdateVectorStoreRequest expiresAfter(VectorStoreExpirationAfter expiresAfter) {
+  public UpdateVectorStoreRequest expiresAfter(AllOfUpdateVectorStoreRequestExpiresAfter expiresAfter) {
     this.expiresAfter = expiresAfter;
     return this;
   }
@@ -63,29 +63,29 @@ public class UpdateVectorStoreRequest {
    * @return expiresAfter
   **/
   @Schema(description = "")
-  public VectorStoreExpirationAfter getExpiresAfter() {
+  public AllOfUpdateVectorStoreRequestExpiresAfter getExpiresAfter() {
     return expiresAfter;
   }
 
-  public void setExpiresAfter(VectorStoreExpirationAfter expiresAfter) {
+  public void setExpiresAfter(AllOfUpdateVectorStoreRequestExpiresAfter expiresAfter) {
     this.expiresAfter = expiresAfter;
   }
 
-  public UpdateVectorStoreRequest metadata(Object metadata) {
+  public UpdateVectorStoreRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

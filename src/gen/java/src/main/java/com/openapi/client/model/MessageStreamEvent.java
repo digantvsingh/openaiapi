@@ -22,14 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ThreadStreamEvent.class, name = "thread.created"),
-        @JsonSubTypes.Type(value = RunStreamEvent.class, name = "thread.run.*"),
-        @JsonSubTypes.Type(value = RunStepStreamEvent.class, name = "thread.run.step.*"),
-        @JsonSubTypes.Type(value = MessageStreamEvent.class, name = "thread.message.*"),
-        @JsonSubTypes.Type(value = ErrorEvent.class, name = "error"),
-        @JsonSubTypes.Type(value = DoneEvent.class, name = "done")
 })
-public interface MessageStreamEvent extends AssistantStreamEvent{
-
+public interface MessageStreamEvent {
 
 }

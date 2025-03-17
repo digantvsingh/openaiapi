@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **refusal** | **String** | The refusal message by the assistant. |  [optional]
 **role** | [**RoleEnum**](#RoleEnum) | The role of the messages author, in this case &#x60;assistant&#x60;. | 
 **name** | **String** | An optional name for the participant. Provides the model information to differentiate between participants of the same role. |  [optional]
+**audio** | [**ChatCompletionRequestAssistantMessageAudio**](ChatCompletionRequestAssistantMessageAudio.md) |  |  [optional]
 **toolCalls** | [**ChatCompletionMessageToolCalls**](ChatCompletionMessageToolCalls.md) |  |  [optional]
 **functionCall** | [**ChatCompletionRequestAssistantMessageFunctionCall**](ChatCompletionRequestAssistantMessageFunctionCall.md) |  |  [optional]
 

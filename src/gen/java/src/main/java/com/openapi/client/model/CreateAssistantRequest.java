@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.AssistantsApiResponseFormatOption;
 import com.openapi.client.model.CreateAssistantRequestToolResources;
+import com.openapi.client.model.Metadata;
+import com.openapi.client.model.ReasoningEffort;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -42,6 +44,9 @@ public class CreateAssistantRequest {
   @JsonProperty("instructions")
   private String instructions = null;
 
+  @JsonProperty("reasoning_effort")
+  private ReasoningEffort reasoningEffort = null;
+
   @JsonProperty("tools")
   private List<OneOfCreateAssistantRequestToolsItems> tools = null;
 
@@ -49,7 +54,7 @@ public class CreateAssistantRequest {
   private CreateAssistantRequestToolResources toolResources = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(1);
@@ -66,10 +71,10 @@ public class CreateAssistantRequest {
   }
 
    /**
-   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
   **/
-  @Schema(example = "gpt-4o", required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @Schema(example = "gpt-4o", required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   public AnyOfCreateAssistantRequestModel getModel() {
     return model;
   }
@@ -132,6 +137,24 @@ public class CreateAssistantRequest {
     this.instructions = instructions;
   }
 
+  public CreateAssistantRequest reasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+    return this;
+  }
+
+   /**
+   * Get reasoningEffort
+   * @return reasoningEffort
+  **/
+  @Schema(description = "")
+  public ReasoningEffort getReasoningEffort() {
+    return reasoningEffort;
+  }
+
+  public void setReasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+  }
+
   public CreateAssistantRequest tools(List<OneOfCreateAssistantRequestToolsItems> tools) {
     this.tools = tools;
     return this;
@@ -176,21 +199,21 @@ public class CreateAssistantRequest {
     this.toolResources = toolResources;
   }
 
-  public CreateAssistantRequest metadata(Object metadata) {
+  public CreateAssistantRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 
@@ -266,6 +289,7 @@ public class CreateAssistantRequest {
         Objects.equals(this.name, createAssistantRequest.name) &&
         Objects.equals(this.description, createAssistantRequest.description) &&
         Objects.equals(this.instructions, createAssistantRequest.instructions) &&
+        Objects.equals(this.reasoningEffort, createAssistantRequest.reasoningEffort) &&
         Objects.equals(this.tools, createAssistantRequest.tools) &&
         Objects.equals(this.toolResources, createAssistantRequest.toolResources) &&
         Objects.equals(this.metadata, createAssistantRequest.metadata) &&
@@ -276,7 +300,7 @@ public class CreateAssistantRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
+    return Objects.hash(model, name, description, instructions, reasoningEffort, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
 
@@ -289,6 +313,7 @@ public class CreateAssistantRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
+    sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");

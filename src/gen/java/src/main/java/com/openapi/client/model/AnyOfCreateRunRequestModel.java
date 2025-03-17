@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
   include = JsonTypeInfo.As.PROPERTY,
   property = "type")
 @JsonSubTypes({
+  @JsonSubTypes.Type(value = AssistantSupportedModels.class, name = "AssistantSupportedModels")
 })
 public interface AnyOfCreateRunRequestModel {
 

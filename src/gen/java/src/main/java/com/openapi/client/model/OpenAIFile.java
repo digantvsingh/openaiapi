@@ -34,6 +34,9 @@ public class OpenAIFile {
   @JsonProperty("created_at")
   private Integer createdAt = null;
 
+  @JsonProperty("expires_at")
+  private Integer expiresAt = null;
+
   @JsonProperty("filename")
   private String filename = null;
 
@@ -201,6 +204,24 @@ public class OpenAIFile {
     this.createdAt = createdAt;
   }
 
+  public OpenAIFile expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * The Unix timestamp (in seconds) for when the file will expire.
+   * @return expiresAt
+  **/
+  @Schema(description = "The Unix timestamp (in seconds) for when the file will expire.")
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
   public OpenAIFile filename(String filename) {
     this.filename = filename;
     return this;
@@ -304,6 +325,7 @@ public class OpenAIFile {
     return Objects.equals(this.id, openAIFile.id) &&
         Objects.equals(this.bytes, openAIFile.bytes) &&
         Objects.equals(this.createdAt, openAIFile.createdAt) &&
+        Objects.equals(this.expiresAt, openAIFile.expiresAt) &&
         Objects.equals(this.filename, openAIFile.filename) &&
         Objects.equals(this.object, openAIFile.object) &&
         Objects.equals(this.purpose, openAIFile.purpose) &&
@@ -313,7 +335,7 @@ public class OpenAIFile {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, bytes, createdAt, filename, object, purpose, status, statusDetails);
+    return Objects.hash(id, bytes, createdAt, expiresAt, filename, object, purpose, status, statusDetails);
   }
 
 
@@ -325,6 +347,7 @@ public class OpenAIFile {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    object: ").append(toIndentedString(object)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");

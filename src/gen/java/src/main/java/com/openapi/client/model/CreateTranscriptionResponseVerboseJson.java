@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.TranscriptionSegment;
 import com.openapi.client.model.TranscriptionWord;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -33,7 +34,7 @@ public class CreateTranscriptionResponseVerboseJson implements InlineResponse200
   private String language = null;
 
   @JsonProperty("duration")
-  private String duration = null;
+  private BigDecimal duration = null;
 
   @JsonProperty("text")
   private String text = null;
@@ -62,7 +63,7 @@ public class CreateTranscriptionResponseVerboseJson implements InlineResponse200
     this.language = language;
   }
 
-  public CreateTranscriptionResponseVerboseJson duration(String duration) {
+  public CreateTranscriptionResponseVerboseJson duration(BigDecimal duration) {
     this.duration = duration;
     return this;
   }
@@ -72,11 +73,11 @@ public class CreateTranscriptionResponseVerboseJson implements InlineResponse200
    * @return duration
   **/
   @Schema(required = true, description = "The duration of the input audio.")
-  public String getDuration() {
+  public BigDecimal getDuration() {
     return duration;
   }
 
-  public void setDuration(String duration) {
+  public void setDuration(BigDecimal duration) {
     this.duration = duration;
   }
 

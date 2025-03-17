@@ -23,32 +23,36 @@
 #!docs/README.md
 
 
-**/CreateModerationRequest.java
-**/CreateImageVariationRequest.java
-**/CreateFineTuningJobRequestHyperparameters.java
-**/FineTuningJobHyperparameters.java
-**/CreateImageRequest.java
-**/CreateImageEditRequest.java
-**/CreateChatCompletionRequest.java
-**/ChatCompletionRequestUserMessage.java
+**/AssistantsApiToolChoiceOption.java
+**/AssistantsNamedToolChoice.java
 **/ApiClient.java
+**/CreateMessageRequest.java
+**/ChatCompletionRequest*Message.java
+**/ModelResponseProperties.java
 **/OneOfMessageObjectContentItems.java
 **/OneOfRunObjectToolsItems.java
-**/ChatCompletionRequest*Message.java
-**/RunObject.java
-**/RunStepObject.java
 **/OneOfRunStepObjectStepDetails.java
-**/MessageObject.java
-**/MessageDeltaObject.java
 **/OneOfMessageDeltaObjectDeltaContentItems.java
-**/ThreadObject.java
-**/*StreamEvent.java
-**/*CreateRunRequest.java
-**/*RunStepDeltaObject.java
 **/OneOfRunStepDeltaObjectDeltaStepDetails.java
 **/OneOfRunStepDeltaStepDetailsToolCallsObjectToolCallsItems.java
 **/OneOfRunStepDetailsToolCallsObjectToolCallsItems.java
-**/MessageRequestContentTextObject.java
+
+**/AssistantsApiResponseFormatOption.java
+**/ResponseStreamEvent.java
+**/AssistantStreamEvent.java
+
+
+**/RunObject.java
+**/RunStepObject.java
+**/RunStepDeltaObject.java
+**/MessageObject.java
+**/MessageDeltaObject.java
+
+
+
+
+
+
 
 
 

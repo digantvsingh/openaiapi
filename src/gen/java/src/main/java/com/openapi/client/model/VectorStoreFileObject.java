@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.VectorStoreFileAttributes;
 import com.openapi.client.model.VectorStoreFileObjectLastError;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
@@ -112,6 +113,9 @@ public class VectorStoreFileObject {
 
   @JsonProperty("chunking_strategy")
   private OneOfVectorStoreFileObjectChunkingStrategy chunkingStrategy = null;
+
+  @JsonProperty("attributes")
+  private VectorStoreFileAttributes attributes = null;
 
   public VectorStoreFileObject id(String id) {
     this.id = id;
@@ -257,6 +261,24 @@ public class VectorStoreFileObject {
     this.chunkingStrategy = chunkingStrategy;
   }
 
+  public VectorStoreFileObject attributes(VectorStoreFileAttributes attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
+  **/
+  @Schema(description = "")
+  public VectorStoreFileAttributes getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(VectorStoreFileAttributes attributes) {
+    this.attributes = attributes;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -274,12 +296,13 @@ public class VectorStoreFileObject {
         Objects.equals(this.vectorStoreId, vectorStoreFileObject.vectorStoreId) &&
         Objects.equals(this.status, vectorStoreFileObject.status) &&
         Objects.equals(this.lastError, vectorStoreFileObject.lastError) &&
-        Objects.equals(this.chunkingStrategy, vectorStoreFileObject.chunkingStrategy);
+        Objects.equals(this.chunkingStrategy, vectorStoreFileObject.chunkingStrategy) &&
+        Objects.equals(this.attributes, vectorStoreFileObject.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, object, usageBytes, createdAt, vectorStoreId, status, lastError, chunkingStrategy);
+    return Objects.hash(id, object, usageBytes, createdAt, vectorStoreId, status, lastError, chunkingStrategy, attributes);
   }
 
 
@@ -296,6 +319,7 @@ public class VectorStoreFileObject {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    lastError: ").append(toIndentedString(lastError)).append("\n");
     sb.append("    chunkingStrategy: ").append(toIndentedString(chunkingStrategy)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

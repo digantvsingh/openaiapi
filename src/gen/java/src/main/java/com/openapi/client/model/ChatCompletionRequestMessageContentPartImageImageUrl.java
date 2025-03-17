@@ -29,7 +29,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl {
   private String url = null;
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    */
   public enum DetailEnum {
     AUTO("auto"),
@@ -61,7 +61,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl {
     }
 
   }  @JsonProperty("detail")
-  private DetailEnum detail = DetailEnum.AUTO;
+  private DetailEnum detail = null;
 
   public ChatCompletionRequestMessageContentPartImageImageUrl url(String url) {
     this.url = url;
@@ -87,10 +87,10 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl {
   }
 
    /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    * @return detail
   **/
-  @Schema(description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).")
+  @Schema(description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).")
   public DetailEnum getDetail() {
     return detail;
   }

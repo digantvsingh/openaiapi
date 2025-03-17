@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(
   use = JsonTypeInfo.Id.NAME,
   include = JsonTypeInfo.As.PROPERTY,
-  property = "object")
+  property = "type")
 @JsonSubTypes({
 })
-public interface RunStreamEvent extends  AssistantStreamEvent {
+public interface RunStreamEvent {
 
 }

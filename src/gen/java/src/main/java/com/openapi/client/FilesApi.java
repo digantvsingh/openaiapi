@@ -50,7 +50,7 @@ public class FilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 100 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * 
      * <p><b>200</b> - OK
      * @param file  (required)
@@ -63,7 +63,7 @@ public class FilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 100 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * 
      * <p><b>200</b> - OK
      * @param file  (required)
@@ -200,26 +200,32 @@ public class FilesApi {
         return apiClient.invokeAPI(path, HttpMethod.GET, queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     }
     /**
-     * Returns a list of files that belong to the user&#x27;s organization.
+     * Returns a list of files.
      * 
      * <p><b>200</b> - OK
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return ListFilesResponse
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ListFilesResponse listFiles(String purpose) throws RestClientException {
-        return listFilesWithHttpInfo(purpose).getBody();
+    public ListFilesResponse listFiles(String purpose, Integer limit, String order, String after) throws RestClientException {
+        return listFilesWithHttpInfo(purpose, limit, order, after).getBody();
     }
 
     /**
-     * Returns a list of files that belong to the user&#x27;s organization.
+     * Returns a list of files.
      * 
      * <p><b>200</b> - OK
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return ResponseEntity&lt;ListFilesResponse&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<ListFilesResponse> listFilesWithHttpInfo(String purpose) throws RestClientException {
+    public ResponseEntity<ListFilesResponse> listFilesWithHttpInfo(String purpose, Integer limit, String order, String after) throws RestClientException {
         Object postBody = null;
         String path = UriComponentsBuilder.fromPath("/files").build().toUriString();
         
@@ -227,6 +233,9 @@ public class FilesApi {
         final HttpHeaders headerParams = new HttpHeaders();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<String, Object>();
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "purpose", purpose));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "limit", limit));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "order", order));
+        queryParams.putAll(apiClient.parameterToMultiValueMap(null, "after", after));
 
         final String[] accepts = { 
             "application/json"

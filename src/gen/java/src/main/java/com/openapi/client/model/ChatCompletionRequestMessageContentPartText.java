@@ -19,9 +19,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
- * ChatCompletionRequestMessageContentPartText
+ * Learn about [text inputs](/docs/guides/text-generation). 
  */
-
+@Schema(description = "Learn about [text inputs](/docs/guides/text-generation). ")
 
 
 public class ChatCompletionRequestMessageContentPartText implements ChatCompletionRequestAssistantMessageContentPart, ChatCompletionRequestSystemMessageContentPart, ChatCompletionRequestToolMessageContentPart, ChatCompletionRequestUserMessageContentPart {

@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openapi.client.model.ChatCompletionNamedToolChoiceFunction;
+import com.openapi.client.model.AssistantsNamedToolChoiceFunction;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * Specifies a tool the model should use. Use to force the model to call a specific function.
@@ -60,7 +60,7 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
   private TypeEnum type = null;
 
   @JsonProperty("function")
-  private ChatCompletionNamedToolChoiceFunction function = null;
+  private AssistantsNamedToolChoiceFunction function = null;
 
   public ChatCompletionNamedToolChoice type(TypeEnum type) {
     this.type = type;
@@ -80,7 +80,7 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
     this.type = type;
   }
 
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -90,11 +90,11 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
    * @return function
   **/
   @Schema(required = true, description = "")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

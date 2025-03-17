@@ -17,8 +17,10 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.FineTuneMethod;
 import com.openapi.client.model.FineTuningJobError;
 import com.openapi.client.model.FineTuningJobHyperparameters;
+import com.openapi.client.model.Metadata;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,6 +146,12 @@ public class FineTuningJob {
 
   @JsonProperty("estimated_finish")
   private Integer estimatedFinish = null;
+
+  @JsonProperty("method")
+  private FineTuneMethod method = null;
+
+  @JsonProperty("metadata")
+  private Metadata metadata = null;
 
   public FineTuningJob id(String id) {
     this.id = id;
@@ -464,6 +472,42 @@ public class FineTuningJob {
     this.estimatedFinish = estimatedFinish;
   }
 
+  public FineTuningJob method(FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @Schema(description = "")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
+  public FineTuningJob metadata(Metadata metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @Schema(description = "")
+  public Metadata getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Metadata metadata) {
+    this.metadata = metadata;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -490,12 +534,14 @@ public class FineTuningJob {
         Objects.equals(this.validationFile, fineTuningJob.validationFile) &&
         Objects.equals(this.integrations, fineTuningJob.integrations) &&
         Objects.equals(this.seed, fineTuningJob.seed) &&
-        Objects.equals(this.estimatedFinish, fineTuningJob.estimatedFinish);
+        Objects.equals(this.estimatedFinish, fineTuningJob.estimatedFinish) &&
+        Objects.equals(this.method, fineTuningJob.method) &&
+        Objects.equals(this.metadata, fineTuningJob.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed, estimatedFinish);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed, estimatedFinish, method, metadata);
   }
 
 
@@ -521,6 +567,8 @@ public class FineTuningJob {
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("    estimatedFinish: ").append(toIndentedString(estimatedFinish)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

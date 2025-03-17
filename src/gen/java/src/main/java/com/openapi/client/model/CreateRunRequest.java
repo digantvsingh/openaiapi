@@ -18,9 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openapi.client.model.AssistantsApiResponseFormatOption;
-import com.openapi.client.model.AssistantsApiToolChoiceOption;
 import com.openapi.client.model.CreateMessageRequest;
-import com.openapi.client.model.TruncationObject;
+import com.openapi.client.model.Metadata;
+import com.openapi.client.model.ReasoningEffort;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -38,6 +38,9 @@ public class CreateRunRequest {
   @JsonProperty("model")
   private AnyOfCreateRunRequestModel model = null;
 
+  @JsonProperty("reasoning_effort")
+  private ReasoningEffort reasoningEffort = null;
+
   @JsonProperty("instructions")
   private String instructions = null;
 
@@ -51,7 +54,7 @@ public class CreateRunRequest {
   private List<OneOfCreateRunRequestToolsItems> tools = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("temperature")
   private BigDecimal temperature = new BigDecimal(1);
@@ -60,7 +63,7 @@ public class CreateRunRequest {
   private BigDecimal topP = new BigDecimal(1);
 
   @JsonProperty("stream")
-  private boolean stream = false;
+  private Boolean stream = null;
 
   @JsonProperty("max_prompt_tokens")
   private Integer maxPromptTokens = null;
@@ -69,13 +72,13 @@ public class CreateRunRequest {
   private Integer maxCompletionTokens = null;
 
   @JsonProperty("truncation_strategy")
-  private TruncationObject truncationStrategy = null;
+  private AllOfCreateRunRequestTruncationStrategy truncationStrategy = null;
 
   @JsonProperty("tool_choice")
-  private AssistantsApiToolChoiceOption toolChoice = null;
+  private AllOfCreateRunRequestToolChoice toolChoice = null;
 
   @JsonProperty("parallel_tool_calls")
-  private boolean parallelToolCalls = false;
+  private Boolean parallelToolCalls = null;
 
   @JsonProperty("response_format")
   private AssistantsApiResponseFormatOption responseFormat = null;
@@ -114,6 +117,24 @@ public class CreateRunRequest {
 
   public void setModel(AnyOfCreateRunRequestModel model) {
     this.model = model;
+  }
+
+  public CreateRunRequest reasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+    return this;
+  }
+
+   /**
+   * Get reasoningEffort
+   * @return reasoningEffort
+  **/
+  @Schema(description = "")
+  public ReasoningEffort getReasoningEffort() {
+    return reasoningEffort;
+  }
+
+  public void setReasoningEffort(ReasoningEffort reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
   }
 
   public CreateRunRequest instructions(String instructions) {
@@ -204,21 +225,21 @@ public class CreateRunRequest {
     this.tools = tools;
   }
 
-  public CreateRunRequest metadata(Object metadata) {
+  public CreateRunRequest metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 
@@ -262,7 +283,7 @@ public class CreateRunRequest {
     this.topP = topP;
   }
 
-  public CreateRunRequest stream(boolean stream) {
+  public CreateRunRequest stream(Boolean stream) {
     this.stream = stream;
     return this;
   }
@@ -272,11 +293,11 @@ public class CreateRunRequest {
    * @return stream
   **/
   @Schema(description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
-  public boolean isStream() {
+  public Boolean isStream() {
     return stream;
   }
 
-  public void setStream(boolean stream) {
+  public void setStream(Boolean stream) {
     this.stream = stream;
   }
 
@@ -318,7 +339,7 @@ public class CreateRunRequest {
     this.maxCompletionTokens = maxCompletionTokens;
   }
 
-  public CreateRunRequest truncationStrategy(TruncationObject truncationStrategy) {
+  public CreateRunRequest truncationStrategy(AllOfCreateRunRequestTruncationStrategy truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
     return this;
   }
@@ -328,15 +349,15 @@ public class CreateRunRequest {
    * @return truncationStrategy
   **/
   @Schema(description = "")
-  public TruncationObject getTruncationStrategy() {
+  public AllOfCreateRunRequestTruncationStrategy getTruncationStrategy() {
     return truncationStrategy;
   }
 
-  public void setTruncationStrategy(TruncationObject truncationStrategy) {
+  public void setTruncationStrategy(AllOfCreateRunRequestTruncationStrategy truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
   }
 
-  public CreateRunRequest toolChoice(AssistantsApiToolChoiceOption toolChoice) {
+  public CreateRunRequest toolChoice(AllOfCreateRunRequestToolChoice toolChoice) {
     this.toolChoice = toolChoice;
     return this;
   }
@@ -346,15 +367,15 @@ public class CreateRunRequest {
    * @return toolChoice
   **/
   @Schema(description = "")
-  public AssistantsApiToolChoiceOption getToolChoice() {
+  public AllOfCreateRunRequestToolChoice getToolChoice() {
     return toolChoice;
   }
 
-  public void setToolChoice(AssistantsApiToolChoiceOption toolChoice) {
+  public void setToolChoice(AllOfCreateRunRequestToolChoice toolChoice) {
     this.toolChoice = toolChoice;
   }
 
-  public CreateRunRequest parallelToolCalls(boolean parallelToolCalls) {
+  public CreateRunRequest parallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
     return this;
   }
@@ -364,11 +385,11 @@ public class CreateRunRequest {
    * @return parallelToolCalls
   **/
   @Schema(description = "")
-  public boolean getParallelToolCalls() {
+  public Boolean getParallelToolCalls() {
     return parallelToolCalls;
   }
 
-  public void setParallelToolCalls(boolean parallelToolCalls) {
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
 
@@ -402,6 +423,7 @@ public class CreateRunRequest {
     CreateRunRequest createRunRequest = (CreateRunRequest) o;
     return Objects.equals(this.assistantId, createRunRequest.assistantId) &&
         Objects.equals(this.model, createRunRequest.model) &&
+        Objects.equals(this.reasoningEffort, createRunRequest.reasoningEffort) &&
         Objects.equals(this.instructions, createRunRequest.instructions) &&
         Objects.equals(this.additionalInstructions, createRunRequest.additionalInstructions) &&
         Objects.equals(this.additionalMessages, createRunRequest.additionalMessages) &&
@@ -420,7 +442,7 @@ public class CreateRunRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assistantId, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
+    return Objects.hash(assistantId, model, reasoningEffort, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
 
@@ -431,6 +453,7 @@ public class CreateRunRequest {
     
     sb.append("    assistantId: ").append(toIndentedString(assistantId)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    additionalInstructions: ").append(toIndentedString(additionalInstructions)).append("\n");
     sb.append("    additionalMessages: ").append(toIndentedString(additionalMessages)).append("\n");

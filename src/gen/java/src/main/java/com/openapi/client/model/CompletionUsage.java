@@ -28,13 +28,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public class CompletionUsage {
   @JsonProperty("completion_tokens")
-  private Integer completionTokens = null;
+  private Integer completionTokens = 0;
 
   @JsonProperty("prompt_tokens")
-  private Integer promptTokens = null;
+  private Integer promptTokens = 0;
 
   @JsonProperty("total_tokens")
-  private Integer totalTokens = null;
+  private Integer totalTokens = 0;
 
   @JsonProperty("completion_tokens_details")
   private CompletionUsageCompletionTokensDetails completionTokensDetails = null;

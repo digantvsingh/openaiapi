@@ -17,6 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openapi.client.model.Metadata;
 import com.openapi.client.model.RunStepCompletionUsage;
 import com.openapi.client.model.RunStepObjectLastError;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -166,7 +167,7 @@ public class RunStepObject implements  AssistantStreamEvent
   private Integer completedAt = null;
 
   @JsonProperty("metadata")
-  private Object metadata = null;
+  private Metadata metadata = null;
 
   @JsonProperty("usage")
   private RunStepCompletionUsage usage = null;
@@ -423,21 +424,21 @@ public class RunStepObject implements  AssistantStreamEvent
     this.completedAt = completedAt;
   }
 
-  public RunStepObject metadata(Object metadata) {
+  public RunStepObject metadata(Metadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Get metadata
    * @return metadata
   **/
-  @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
-  public Object getMetadata() {
+  @Schema(required = true, description = "")
+  public Metadata getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(Object metadata) {
+  public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
 

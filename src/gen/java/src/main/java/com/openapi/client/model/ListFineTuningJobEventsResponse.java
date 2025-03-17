@@ -64,6 +64,9 @@ public class ListFineTuningJobEventsResponse {
   }  @JsonProperty("object")
   private ObjectEnum object = null;
 
+  @JsonProperty("has_more")
+  private Boolean hasMore = null;
+
   public ListFineTuningJobEventsResponse data(List<FineTuningJobEvent> data) {
     this.data = data;
     return this;
@@ -105,6 +108,24 @@ public class ListFineTuningJobEventsResponse {
     this.object = object;
   }
 
+  public ListFineTuningJobEventsResponse hasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+   /**
+   * Get hasMore
+   * @return hasMore
+  **/
+  @Schema(required = true, description = "")
+  public Boolean isHasMore() {
+    return hasMore;
+  }
+
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -116,12 +137,13 @@ public class ListFineTuningJobEventsResponse {
     }
     ListFineTuningJobEventsResponse listFineTuningJobEventsResponse = (ListFineTuningJobEventsResponse) o;
     return Objects.equals(this.data, listFineTuningJobEventsResponse.data) &&
-        Objects.equals(this.object, listFineTuningJobEventsResponse.object);
+        Objects.equals(this.object, listFineTuningJobEventsResponse.object) &&
+        Objects.equals(this.hasMore, listFineTuningJobEventsResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, object);
+    return Objects.hash(data, object, hasMore);
   }
 
 
@@ -132,6 +154,7 @@ public class ListFineTuningJobEventsResponse {
     
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    object: ").append(toIndentedString(object)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

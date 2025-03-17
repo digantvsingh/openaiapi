@@ -3,5 +3,5 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**input** | **OneOfCreateModerationRequestInput** | The input text to classify | 
-**model** | **AnyOfCreateModerationRequestModel** | Two content moderations models are available: &#x60;text-moderation-stable&#x60; and &#x60;text-moderation-latest&#x60;.  The default is &#x60;text-moderation-latest&#x60; which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use &#x60;text-moderation-stable&#x60;, we will provide advanced notice before updating the model. Accuracy of &#x60;text-moderation-stable&#x60; may be slightly lower than for &#x60;text-moderation-latest&#x60;.  |  [optional]
+**input** | **OneOfCreateModerationRequestInput** | Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models.  | 
+**model** | **AnyOfCreateModerationRequestModel** | The content moderation model you would like to use. Learn more in [the moderation guide](/docs/guides/moderation), and learn about available models [here](/docs/models#moderation).  |  [optional]

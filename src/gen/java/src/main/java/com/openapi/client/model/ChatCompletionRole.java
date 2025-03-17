@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * The role of the author of a message
  */
 public enum ChatCompletionRole {
+  DEVELOPER("developer"),
   SYSTEM("system"),
   USER("user"),
   ASSISTANT("assistant"),

@@ -42,7 +42,7 @@ public class CreateChatCompletionResponse {
   private String model = null;
 
   /**
-   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * The service tier used for processing the request.
    */
   public enum ServiceTierEnum {
     SCALE("scale"),
@@ -197,10 +197,10 @@ public class CreateChatCompletionResponse {
   }
 
    /**
-   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * The service tier used for processing the request.
    * @return serviceTier
   **/
-  @Schema(example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+  @Schema(example = "scale", description = "The service tier used for processing the request.")
   public ServiceTierEnum getServiceTier() {
     return serviceTier;
   }

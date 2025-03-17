@@ -61,7 +61,7 @@ public class MessageContentImageFileObjectImageFile {
     }
 
   }  @JsonProperty("detail")
-  private DetailEnum detail = DetailEnum.AUTO;
+  private DetailEnum detail = null;
 
   public MessageContentImageFileObjectImageFile fileId(String fileId) {
     this.fileId = fileId;
