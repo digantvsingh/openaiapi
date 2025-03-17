@@ -14,7 +14,7 @@
     <artifactId>openaiclient</artifactId>
     <packaging>jar</packaging>
     <name>openaiclient</name>
-    <version>1.2.2</version>
+    <version>1.2.2.2</version>
     <url>https://github.com/swagger-api/swagger-codegen</url>
     <description>Swagger Java for open ai api</description>
 
