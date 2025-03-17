@@ -9563,6 +9563,47 @@ components:
           nullable: true
         tool_calls:
           $ref: "#/components/schemas/ChatCompletionMessageToolCalls"
+        annotations:
+          type: array
+          description: |
+            Annotations for the message, when applicable, as when using the
+            [web search tool](/docs/guides/tools-web-search?api-mode=chat).
+          items:
+            type: object
+            description: |
+              A URL citation when using web search.
+            required:
+              - type
+              - url_citation
+            properties:
+              type:
+                type: string
+                description: The type of the URL citation. Always `url_citation`.
+                enum:
+                  - url_citation
+                x-stainless-const: true
+              url_citation:
+                type: object
+                description: A URL citation when using web search.
+                required:
+                  - end_index
+                  - start_index
+                  - url
+                  - title
+                properties:
+                  end_index:
+                    type: integer
+                    description: The index of the last character of the URL citation in the message.
+                  start_index:
+                    type: integer
+                    description: The index of the first character of the URL citation in the
+                      message.
+                  url:
+                    type: string
+                    description: The URL of the web resource.
+                  title:
+                    type: string
+                    description: The title of the web resource.
         role:
           type: string
           enum: ["assistant"]
