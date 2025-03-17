@@ -11808,7 +11808,7 @@ components:
         total_tokens:
           type: integer
           description: Total number of tokens used (prompt + completion).
-        completion_token_details:
+        completion_tokens_details:
           type: object
           description: Breakdown of tokens used in a completion.
           properties:
